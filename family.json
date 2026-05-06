@@ -1,0 +1,302 @@
+{
+  "people": [
+    {
+      "id": "karupana-goundar-appa",
+      "name": "க (K)",
+      "gender": "male",
+      "birthYear": 1938,
+      "deathYear": 2012,
+      "place": "Thalathurai",
+      "photo": "",
+      "bio": "Family storyteller and gardener."
+    },
+    {
+      "id": "karupana-goundar",
+      "name": "கருப்பண்ண கவுண்டர் (Karupana Goundar)",
+      "gender": "male",
+      "birthYear": 1938,
+      "deathYear": 2012,
+      "place": "Thalathurai",
+      "father": "karupana-goundar-appa",
+      "photo": "",
+      "bio": "Family storyteller and gardener."
+    },
+    {
+      "id": "ramathal",
+      "name": "ராமத்தாள் (Ramathal)",
+      "gender": "female",
+      "birthYear": 1942,
+      "place": "Thalathurai",
+      "photo": "",
+      "bio": "Kept the family recipes and holiday traditions."
+    },
+    {
+      "id": "palanisamy",
+      "name": "பழனிசாமி (Palanisamy)",
+      "mother": "ramathal",
+      "father": "karupana-goundar",
+      "gender": "male",
+      "birthYear": 1955,
+      "deathYear": 2023,
+      "place": "Thalathurai",
+      "photo": ""
+    },
+    {
+      "id": "kokilamani",
+      "name": "கோகிலாமணி (Kokilamani)",
+      "gender": "female",
+      "birthYear": 1969,
+      "place": "Thalathurai",
+      "photo": ""
+    },
+    {
+      "id": "santhoshkumar",
+      "name": "சந்தோஷ்குமார் (Santhoshkumar)",
+      "mother": "kokilamani",
+      "father": "palanisamy",
+      "gender": "male",
+      "birthYear": 1989,
+      "place": "Thalathurai",
+      "photo": ""
+    },
+    {
+      "id": "mythili",
+      "name": "மைதிலி (Mythili)",
+      "gender": "female",
+      "birthYear": 1990,
+      "place": "Thalathurai",
+      "photo": ""
+    },
+    {
+      "id": "sarvesh",
+      "name": "சர்வேஷ் (Sarvesh)",
+      "mother": "mythili",
+      "father": "santhoshkumar",
+      "gender": "male",
+      "birthYear": 2016,
+      "place": "Thalathurai",
+      "photo": ""
+    },
+    {
+      "id": "rithvik",
+      "name": "ரித்விக் (Rithvik)",
+      "mother": "mythili",
+      "father": "santhoshkumar",
+      "gender": "male",
+      "birthYear": 2020,
+      "place": "Thalathurai",
+      "photo": ""
+    },
+    {
+      "id": "murugasamy",
+      "name": "முருகசாமி (Murugasamy)",
+      "mother": "ramathal",
+      "father": "karupana-goundar",
+      "gender": "male",
+      "place": "Thalathurai",
+      "photo": ""
+    },
+    {
+      "id": "vijaya",
+      "name": "விஜயா (Vijaya)",
+      "gender": "female",
+      "place": "Thalathurai",
+      "photo": ""
+    },
+    {
+      "id": "indhu",
+      "name": "இந்து (Indhu)",
+      "gender": "female",
+      "place": "Thalathurai",
+      "mother": "vijaya",
+      "father": "murugasamy",
+      "photo": ""
+    },
+    {
+      "id": "karthik",
+      "name": "கார்த்திக் (Karthik)",
+      "gender": "male",
+      "place": "Thalathurai",
+      "mother": "vijaya",
+      "father": "murugasamy",
+      "photo": ""
+    },
+    {
+      "id": "kalamani",
+      "name": "கலாமணி (Kalamani)",
+      "gender": "female",
+      "place": "Mettupalayam",
+      "mother": "ramathal",
+      "father": "karupana-goundar",
+      "photo": ""
+    },
+
+
+    {
+      "id": "marappa-goundar",
+      "name": "மாரப்ப கவுண்டர் (Marappa Goundar)",
+      "gender": "male",
+      "birthYear": 1950,
+      "place": "Pattakaranur",
+      "photo": ""
+    },
+    {
+      "id": "nanjappa-goundar",
+      "name": "நஞ்சப்ப கவுண்டர் (Nanjappa Goundar)",
+      "gender": "male",
+      "birthYear": 1950,
+      "place": "Pattakaranur",
+      "father": "marappa-goundar",
+      "photo": ""
+    },
+    {
+      "id": "nanjamal",
+      "name": "நஞ்சம்மாள் (Nanjamal)",
+      "gender": "female",
+      "place": "Pattakaranur",
+      "photo": ""
+    },
+    {
+      "id": "selvi",
+      "name": "செல்வி (Selvi)",
+      "gender": "female",
+      "place": "Pattakaranur",
+      "mother": "nanjamal",
+      "father": "nanjappa-goundar",
+      "photo": ""
+    },
+    {
+      "id": "chinthamani",
+      "name": "சிந்தாமணி (Chinthamani)",
+      "gender": "female",
+      "place": "Pattakaranur",
+      "mother": "nanjamal",
+      "father": "nanjappa-goundar",
+      "photo": ""
+    },
+    {
+      "id": "kaniyappa-goundar",
+      "name": "காணியப்ப கவுண்டர் (Kanniyappa Goundar)",
+      "gender": "male",
+      "birthYear": 1950,
+      "mother": "nanjamal",
+      "father": "nanjappa-goundar",
+      "place": "Pattakaranur",
+      "photo": ""
+    },
+    {
+      "id": "amaravathi",
+      "name": "அமராவதி (Amaraavathi)",
+      "gender": "female",
+      "birthYear": 1950,
+      "place": "Pattakaranur",
+      "photo": ""
+    },
+    {
+      "id": "masiladevi",
+      "name": "மாசிலாதேவி (Maasiladevi)",
+      "gender": "female",
+      "birthYear": 1986,
+      "mother": "amaravathi",
+      "father": "kaniyappa-goundar",
+      "place": "Pattakaranur",
+      "photo": ""
+    },
+    {
+      "id": "shankar",
+      "name": "சங்கர் (Sankar)",
+      "gender": "male",
+      "birthYear": 1984,
+      "mother": "amaravathi",
+      "father": "kaniyappa-goundar",
+      "place": "Pattakaranur",
+      "photo": ""
+    },
+    {
+      "id": "kavitha",
+      "name": "கவிதாமணி (Kavithaamani)",
+      "gender": "female",
+      "birthYear": 1988,
+      "place": "Pattakaranur",
+      "photo": ""
+    },
+    {
+      "id": "adarsh",
+      "name": "ஆதர்ஷ் (Aadarsh)",
+      "gender": "male",
+      "birthYear": 2019,
+      "mother": "kavitha",
+      "father": "shankar",
+      "place": "Pattakaranur",
+      "photo": ""
+    },
+    {
+      "id": "pratigya",
+      "name": "பிரதிக்யா (Pratigya)",
+      "gender": "female",
+      "birthYear": 2015,
+      "mother": "kavitha",
+      "father": "shankar",
+      "place": "Pattakaranur",
+      "photo": ""
+    },
+    {
+      "id": "myilsamy",
+      "name": "மயில்சாமி (Myilsaamy)",
+      "gender": "male",
+      "birthYear": 1950,
+      "mother": "nanjamal",
+      "father": "nanjappa-goundar",
+      "place": "Pattakaranur",
+      "photo": ""
+    },
+    {
+      "id": "vasanthamani",
+      "name": "வசந்தாமணி (Vasanthamani)",
+      "gender": "female",
+      "birthYear": 1950,
+      "place": "Pattakaranur",
+      "photo": ""
+    },
+    {
+      "id": "sethuraman",
+      "name": "சேதுராமன் (Sethuraman)",
+      "gender": "male",
+      "birthYear": 1995,
+      "mother": "vasanthamani",
+      "father": "myilsamy",
+      "place": "Pattakaranur",
+      "photo": ""
+    },
+    {
+      "id": "megala",
+      "name": "மேகலா (Megala)",
+      "gender": "female",
+      "birthYear": 2000,
+      "place": "Pattakaranur",
+      "photo": ""
+    },
+    {
+      "id": "sowbhagyam",
+      "name": "சௌபாக்கியம் (Sowbhagyam)",
+      "gender": "female",
+      "birthYear": 1950,
+      "mother": "vasanthamani",
+      "father": "myilsamy",
+      "place": "Sulur",
+      "photo": ""
+    }
+  ],
+  "relationships": [
+    { "type": "partner", "person1": "karupana-goundar", "person2": "ramathal" },
+    { "type": "partner", "person1": "palanisamy", "person2": "kokilamani" },
+    { "type": "partner", "person1": "santhoshkumar", "person2": "mythili" },
+    { "type": "partner", "person1": "murugasamy", "person2": "vijaya" },
+
+    { "type": "partner", "person1": "nanjappa-goundar", "person2": "nanjamal" },
+    { "type": "partner", "person1": "kaniyappa-goundar", "person2": "amaravathi" },
+    { "type": "partner", "person1": "shankar", "person2": "kavitha" },
+    { "type": "partner", "person1": "myilsamy", "person2": "vasanthamani" },
+    { "type": "partner", "person1": "sethuraman", "person2": "megala" }
+  ]
+}

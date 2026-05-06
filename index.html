@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Family Tree</title>
+    <meta
+      name="description"
+      content="Interactive multi-generation family tree rendered from family.json."
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <h1>Family Tree</h1>
+      </div>
+
+      <div class="controls">
+        <label class="search">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              d="M21 21l-4.3-4.3M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"
+            />
+          </svg>
+          <input id="search" type="search" placeholder="Search by name or place…" autocomplete="off" />
+        </label>
+        <div class="zoom-controls" role="group" aria-label="Zoom">
+          <button id="zoom-out" aria-label="Zoom out">&minus;</button>
+          <button id="zoom-reset" aria-label="Reset zoom">100%</button>
+          <button id="zoom-in" aria-label="Zoom in">+</button>
+          <button id="fit" aria-label="Fit to screen">Fit</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="viewport" id="viewport">
+      <div class="canvas" id="canvas">
+        <svg
+          class="connectors"
+          id="connectors"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        ></svg>
+        <div class="cards" id="cards"></div>
+      </div>
+
+      <div class="hint" id="hint">
+        <span>Drag to pan · Scroll / pinch to zoom · Click a person for details</span>
+      </div>
+      <div class="legend" id="legend"></div>
+    </main>
+
+    <aside class="detail" id="detail" hidden aria-live="polite">
+      <button class="close" id="detail-close" aria-label="Close details">&times;</button>
+      <div class="detail-body" id="detail-body"></div>
+    </aside>
+
+    <div class="loading" id="loading">Loading family tree…</div>
+    <div class="error" id="error" hidden></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
