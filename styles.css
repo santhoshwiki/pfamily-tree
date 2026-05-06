@@ -1,11 +1,11 @@
 :root {
-  --bg: #fbf6e7;
-  --bg-grid: rgba(31, 42, 68, 0.06);
+  --bg: #f6f8fb;
+  --bg-grid: rgba(31, 42, 68, 0.07);
   --line: #1f2a44;
   --text: #1f2a44;
   --muted: #5a6479;
-  --shadow: 0 2px 6px rgba(31, 42, 68, 0.08);
-  --shadow-hover: 0 6px 18px rgba(31, 42, 68, 0.18);
+  --shadow: 0 2px 6px rgba(31, 42, 68, 0.10);
+  --shadow-hover: 0 8px 22px rgba(31, 42, 68, 0.20);
 
   /* Card palette inspired by design.png — soft pastels per generation */
   --gen-0: #bfe2ff;
@@ -49,7 +49,7 @@ body {
   justify-content: space-between;
   gap: 16px;
   padding: 0 20px;
-  background: rgba(255, 252, 240, 0.85);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: saturate(140%) blur(10px);
   -webkit-backdrop-filter: saturate(140%) blur(10px);
   border-bottom: 1px solid rgba(31, 42, 68, 0.1);
