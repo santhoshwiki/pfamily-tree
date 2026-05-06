@@ -1,0 +1,20 @@
+styles.css
+  s_29bc636a0205e9::t_6dd1878358076d 52
+  s_29bc636a0205e9::t_1d31898f60c1ce 2-3,7-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "2834f750fbc50992f37af9447a05166f3f7ab419",
+  "prompts": {},
+  "sessions": {
+    "s_29bc636a0205e9": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "9e7adc25-9413-407d-8150-e2b947b177c3",
+        "model": "claude-opus-4-7-thinking-xhigh"
+      },
+      "human_author": "Santhoshkumar. P <mail2palanisamyk@gmail.com>"
+    }
+  }
+}
