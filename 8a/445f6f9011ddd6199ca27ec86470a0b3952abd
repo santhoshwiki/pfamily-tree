@@ -1,0 +1,14 @@
+.gitignore
+  h_7d4db1bfbefa1c 5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "8a445f6f9011ddd6199ca27ec86470a0b3952abd",
+  "prompts": {},
+  "humans": {
+    "h_7d4db1bfbefa1c": {
+      "author": "Santhoshkumar. P <mail2palanisamyk@gmail.com>"
+    }
+  }
+}
