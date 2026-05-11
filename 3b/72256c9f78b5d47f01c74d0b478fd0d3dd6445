@@ -1,0 +1,25 @@
+scripts/smoke-test.js
+  s_078bada594ba31::t_59dd50e193eaa0 1-169
+scripts/layout-check.js
+  s_078bada594ba31::t_a25bead6ac06a9 200-201,204,214-215,217,222-228,232-238,260,262,264,267,276-279,284
+  s_078bada594ba31::t_fea1bb48139561 252,256,265-266,268
+  s_078bada594ba31::t_be8187536c175c 212,229-231,271,273-275,290
+  s_078bada594ba31::t_87c03a013d64cc 1-197,210-211,269-270,280-283,285-289,291-335
+  s_078bada594ba31::t_f3b2ae32ed6fc1 198-199,202-203,205-209,213,216,218-221,239-251,253-255,257-259,261,263,272
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "3b72256c9f78b5d47f01c74d0b478fd0d3dd6445",
+  "prompts": {},
+  "sessions": {
+    "s_078bada594ba31": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "8143036b-565e-4477-93a6-3954d8cb9145",
+        "model": "claude-opus-4-7-thinking-xhigh"
+      },
+      "human_author": "Santhoshkumar. P <mail2palanisamyk@gmail.com>"
+    }
+  }
+}
