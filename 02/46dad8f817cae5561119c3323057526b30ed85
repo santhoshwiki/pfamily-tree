@@ -1,0 +1,38 @@
+index.html
+  s_078bada594ba31::t_776877801ceac9 79
+  s_078bada594ba31::t_c4e5cfe6d58ba2 24
+family.json
+  h_7d4db1bfbefa1c 290-325,329-354,356-373,632-634
+app.js
+  s_078bada594ba31::t_c19ab046f3dc80 348-349,352-353,355-361,366,369,372-373,377-380,397-428,430-432,434,436,447
+  s_078bada594ba31::t_0d5c5875688dbf 104-110,124-141,163-190
+  s_078bada594ba31::t_76eb45f4212abc 690-691,697-698
+  s_078bada594ba31::t_79a0b0587fe992 228-240,304-310,323-327,329-333,338-347,362-363,376,395-396,443,445,457-460,462-466,468-470
+  s_078bada594ba31::t_e7c7350a661ea1 311-322,328,364-365,385-387,444,446,448-451,467
+  s_078bada594ba31::t_430acab80c3346 334-337,350-351,354,367-368,370-371,374-375,381-384,388-394,429,433,435,437,441,452-456,461
+  s_078bada594ba31::t_149fc1bd6040ab 202
+  s_078bada594ba31::t_c4403a2058a4ca 600,603,607-611,613-618,621-641,651-676
+  s_078bada594ba31::t_527c421935125b 438-440,442
+  s_078bada594ba31::t_3d6ad1f0c1338c 750-751,753-755,759-785
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "0246dad8f817cae5561119c3323057526b30ed85",
+  "prompts": {},
+  "humans": {
+    "h_7d4db1bfbefa1c": {
+      "author": "Santhoshkumar. P <mail2palanisamyk@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_078bada594ba31": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "8143036b-565e-4477-93a6-3954d8cb9145",
+        "model": "claude-opus-4-7-thinking-xhigh"
+      },
+      "human_author": "Santhoshkumar. P <mail2palanisamyk@gmail.com>"
+    }
+  }
+}
