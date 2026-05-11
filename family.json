@@ -1,15 +1,297 @@
 {
   "people": [
     {
-      "id": "karupana-goundar-appa",
-      "name": "க (K)",
+      "id": "nanjappa-goundar-1",
+      "name": "நஞ்சப்ப கவுண்டர் (Nanjappa Goundar)",
       "gender": "male",
-      "birthYear": 1938,
-      "deathYear": 2012,
-      "place": "Thalathurai",
+      "place": "",
       "photo": "",
-      "bio": "Family storyteller and gardener."
+      "bio": ""
     },
+    {
+      "id": "poochiyammal",
+      "name": "பூச்சியம்மாள் (Poochiyammal)",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": ""
+    },
+    {
+      "id": "nallikgoundar",
+      "name": "நல்லிக்கவுண்டர் (Nallikgoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "nanjappa-goundar-1",
+      "mother": "poochiyammal"
+    },
+    {
+      "id": "pattegoundar",
+      "name": "பட்டேகவுண்டர் (Pattegoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "nanjappa-goundar-1",
+      "mother": "poochiyammal"
+    },
+    {
+      "id": "kumaragoundar",
+      "name": "குமாரக்கவுண்டர் (Kumaragoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "nanjappa-goundar-1",
+      "mother": "poochiyammal"
+    },
+
+
+
+    {
+      "id": "karuppagoundar",
+      "name": "கருப்ப கவுண்டர் (Karuppagoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "pattegoundar"
+    },
+    {
+      "id": "karuppagoundar-wife1",
+      "name": "மனைவி 1",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": ""
+    },
+    {
+      "id": "karuppagoundar-wife2",
+      "name": "மனைவி 2",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": ""
+    },
+
+    {
+      "id": "chinaagoundar",
+      "name": "சின்னாக்கவுண்டர் (Chinaagoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "karuppagoundar",
+      "mother": "karuppagoundar-wife1"
+    },
+    {
+      "id": "marappa-goundar",
+      "name": "மாரப்ப கவுண்டர் (Marappa Goundar)",
+      "gender": "male",
+      "birthYear": 1950,
+      "place": "Pattakaranur",
+      "photo": "",
+      "bio": "",
+      "father": "karuppagoundar",
+      "mother": "karuppagoundar-wife1"
+    },
+    {
+      "id": "kuttiyamal",
+      "name": "குட்டியம்மாள் (Kuttiyamal)",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": ""
+    },
+    {
+      "id": "nanjappa-goundar-2",
+      "name": "நஞ்சப்ப கவுண்டர் (Nanjappa Goundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "karuppagoundar",
+      "mother": "karuppagoundar-wife1"
+    },
+    {
+      "id": "kitakgoundar",
+      "name": "கிட்டாக்கவுண்டர் (Kitakgoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "karuppagoundar",
+      "mother": "karuppagoundar-wife1"
+    },
+    {
+      "id": "velaakgoundar",
+      "name": "வேலாக்கவுண்டர் (Velaakgoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "karuppagoundar",
+      "mother": "karuppagoundar-wife1"
+    },
+    {
+      "id": "paraakgoundar",
+      "name": "பாராக்கவுண்டர் (Paraakgoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "karuppagoundar",
+      "mother": "karuppagoundar-wife1"
+    },
+    {
+      "id": "karuppagoundar-g1",
+      "name": "பெண் 1",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "karuppagoundar",
+      "mother": "karuppagoundar-wife1"
+    },
+    {
+      "id": "karuppagoundar-g2",
+      "name": "பெண் 2",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "karuppagoundar",
+      "mother": "karuppagoundar-wife1"
+    },
+    {
+      "id": "karuppagoundar-g3",
+      "name": "பெண் 3",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "karuppagoundar",
+      "mother": "karuppagoundar-wife1"
+    },
+    {
+      "id": "karuppagoundar-g4",
+      "name": "பெண் 4",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "karuppagoundar",
+      "mother": "karuppagoundar-wife1"
+    },
+    {
+      "id": "karuppagoundar-g5",
+      "name": "பெண் 5",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "karuppagoundar",
+      "mother": "karuppagoundar-wife1"
+    },
+    {
+      "id": "karuppagoundar-g6",
+      "name": "பெண் 6",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "karuppagoundar",
+      "mother": "karuppagoundar-wife1"
+    },
+
+
+    {
+      "id": "kaniyappagoundar",
+      "name": "கனியப்பகவுண்டர் (Kaniyappagoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "karuppagoundar",
+      "mother": "karuppagoundar-wife2"
+    },
+    {
+      "id": "nanjappa-goundar-3",
+      "name": "நஞ்சப்ப கவுண்டர் (Nanjappa Goundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "karuppagoundar",
+      "mother": "karuppagoundar-wife2"
+    },
+    {
+      "id": "ramasamy-goundar",
+      "name": "ராமசாமி கவுண்டர் (Ramasamy goundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "karuppagoundar",
+      "mother": "karuppagoundar-wife2"
+    },
+    {
+      "id": "aaraakgoundar",
+      "name": "ஆராக்கவுண்டர் (Aaraakgoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "karuppagoundar",
+      "mother": "karuppagoundar-wife2"
+    },
+    {
+      "id": "pattegoundar-2",
+      "name": "பட்டேகவுண்டர் (Pattegoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "karuppagoundar",
+      "mother": "karuppagoundar-wife2"
+    },
+    {
+      "id": "karuppagoundar-g7",
+      "name": "பெண் 7",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "karuppagoundar",
+      "mother": "karuppagoundar-wife2"
+    },
+    {
+      "id": "karuppagoundar-g8",
+      "name": "பெண் 8",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "karuppagoundar",
+      "mother": "karuppagoundar-wife2"
+    },
+    {
+      "id": "karuppagoundar-g9",
+      "name": "பெண் 9",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "karuppagoundar",
+      "mother": "karuppagoundar-wife2"
+    },
+
+
+
+
+
+
     {
       "id": "karupana-goundar",
       "name": "கருப்பண்ண கவுண்டர் (Karupana Goundar)",
@@ -17,7 +299,7 @@
       "birthYear": 1938,
       "deathYear": 2012,
       "place": "Thalathurai",
-      "father": "karupana-goundar-appa",
+      "father": "nanjappa-goundar-2",
       "photo": "",
       "bio": "Family storyteller and gardener."
     },
@@ -132,14 +414,7 @@
     },
 
 
-    {
-      "id": "marappa-goundar",
-      "name": "மாரப்ப கவுண்டர் (Marappa Goundar)",
-      "gender": "male",
-      "birthYear": 1950,
-      "place": "Pattakaranur",
-      "photo": ""
-    },
+
     {
       "id": "nanjappa-goundar",
       "name": "நஞ்சப்ப கவுண்டர் (Nanjappa Goundar)",
@@ -147,6 +422,7 @@
       "birthYear": 1950,
       "place": "Pattakaranur",
       "father": "marappa-goundar",
+      "mother": "kuttiyamal",
       "photo": ""
     },
     {
@@ -288,6 +564,13 @@
     }
   ],
   "relationships": [
+    { "type": "partner", "person1": "nanjappa-goundar-1", "person2": "poochiyammal" },
+
+    { "type": "partner", "person1": "karuppagoundar", "person2": "karuppagoundar-wife1" },
+    { "type": "partner", "person1": "karuppagoundar", "person2": "karuppagoundar-wife2" },
+
+    { "type": "partner", "person1": "marappa-goundar", "person2": "kuttiyamal" },
+
     { "type": "partner", "person1": "karupana-goundar", "person2": "ramathal" },
     { "type": "partner", "person1": "palanisamy", "person2": "kokilamani" },
     { "type": "partner", "person1": "santhoshkumar", "person2": "mythili" },
