@@ -287,8 +287,90 @@
     },
 
 
+    {
+      "id": "subramani",
+      "name": "சுப்பிரமணி (Subramani)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "paraakgoundar"
+    },
+    {
+      "id": "rangasamy",
+      "name": "ரங்கசாமி (Rangasamy)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "paraakgoundar"
+    },
+    {
+      "id": "paraakgoundar-g1",
+      "name": "பெண் 1",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "paraakgoundar"
+    },
+    {
+      "id": "paraakgoundar-g2",
+      "name": "பெண் 2",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "paraakgoundar"
+    },
 
 
+    {
+      "id": "subramani-wife1",
+      "name": "மனைவி 1",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": ""
+    },
+    {
+      "id": "sanmugan",
+      "name": "சண்முகன் (Sanmugan)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "subramani",
+      "mother": "subramani-wife1"
+    },
+    {
+      "id": "yuvaraj",
+      "name": "யுவராஜ் (Yuvaraj)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "sanmugan"
+    },
+
+    {
+      "id": "subramani-wife2",
+      "name": "மனைவி 2",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": ""
+    },
+    {
+      "id": "karthi-1",
+      "name": "கார்த்தி (Karthi)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "subramani",
+      "mother": "subramani-wife2"
+    },
 
 
     {
@@ -546,6 +628,9 @@
     { "type": "partner", "person1": "karuppagoundar", "person2": "karuppagoundar-wife2" },
 
     { "type": "partner", "person1": "marappa-goundar", "person2": "kuttiyamal" },
+
+    { "type": "partner", "person1": "subramani", "person2": "subramani-wife1" },
+    { "type": "partner", "person1": "subramani", "person2": "subramani-wife2" },
 
     { "type": "partner", "person1": "karupana-goundar", "person2": "ramathal" },
     { "type": "partner", "person1": "palanisamy", "person2": "kokilamani" },

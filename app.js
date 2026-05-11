@@ -101,7 +101,13 @@
     data.people.forEach((p) => {
       peopleById[p.id] = Object.assign({}, p, {
         _children: new Set(),
-        _partner: null,
+        // A person may have several partners over time (e.g. a man with two
+        // wives). Keep them in order of appearance in `relationships`.
+        _partners: [],
+        // For an anchor with multiple partners we also bucket children by
+        // which partner is the OTHER parent, so each marriage can be drawn
+        // with its own children group.
+        _childrenByPartner: {},
       });
     });
 
@@ -115,21 +121,24 @@
     (data.relationships || [])
       .filter((r) => r.type === "partner")
       .forEach((r) => {
-        if (peopleById[r.person1] && peopleById[r.person2]) {
-          peopleById[r.person1]._partner = r.person2;
-          peopleById[r.person2]._partner = r.person1;
-          // anchor = whichever partner descends from someone in the dataset
-          const p1HasParents =
-            (peopleById[r.person1].father && peopleById[peopleById[r.person1].father]) ||
-            (peopleById[r.person1].mother && peopleById[peopleById[r.person1].mother]);
-          const p2HasParents =
-            (peopleById[r.person2].father && peopleById[peopleById[r.person2].father]) ||
-            (peopleById[r.person2].mother && peopleById[peopleById[r.person2].mother]);
-          let anchor = r.person1;
-          if (p2HasParents && !p1HasParents) anchor = r.person2;
-          coupleAnchorOf[r.person1] = anchor;
-          coupleAnchorOf[r.person2] = anchor;
-        }
+        if (!peopleById[r.person1] || !peopleById[r.person2]) return;
+        const a = peopleById[r.person1];
+        const b = peopleById[r.person2];
+        if (a._partners.indexOf(r.person2) === -1) a._partners.push(r.person2);
+        if (b._partners.indexOf(r.person1) === -1) b._partners.push(r.person1);
+        // anchor = whichever partner descends from someone in the dataset
+        const p1HasParents =
+          (a.father && peopleById[a.father]) || (a.mother && peopleById[a.mother]);
+        const p2HasParents =
+          (b.father && peopleById[b.father]) || (b.mother && peopleById[b.mother]);
+        let anchor = r.person1;
+        if (p2HasParents && !p1HasParents) anchor = r.person2;
+        // If we've already locked an anchor for either side from an earlier
+        // marriage, keep it so all of a person's marriages share one anchor.
+        if (coupleAnchorOf[r.person1]) anchor = coupleAnchorOf[r.person1];
+        else if (coupleAnchorOf[r.person2]) anchor = coupleAnchorOf[r.person2];
+        coupleAnchorOf[r.person1] = anchor;
+        coupleAnchorOf[r.person2] = anchor;
       });
 
     // Move children of non-anchor partners onto the anchor so each couple's
@@ -151,6 +160,35 @@
         return ay - by;
       });
     });
+
+    // Bucket children by the partner who is the OTHER parent, so anchors
+    // with multiple partners can lay out each marriage's children below the
+    // correct partner. Children whose other parent isn't recorded fall back
+    // to the first partner so they still show up somewhere sensible.
+    Object.values(peopleById).forEach((p) => {
+      if (p._partners.length === 0) return;
+      p._partners.forEach((pid) => {
+        p._childrenByPartner[pid] = [];
+      });
+      const orphans = [];
+      p._childrenArr.forEach((cid) => {
+        const c = peopleById[cid];
+        let match = null;
+        for (let i = 0; i < p._partners.length; i++) {
+          const partnerId = p._partners[i];
+          if (c.father === partnerId || c.mother === partnerId) {
+            match = partnerId;
+            break;
+          }
+        }
+        if (match) p._childrenByPartner[match].push(cid);
+        else orphans.push(cid);
+      });
+      if (orphans.length) {
+        const firstPartner = p._partners[0];
+        p._childrenByPartner[firstPartner] = p._childrenByPartner[firstPartner].concat(orphans);
+      }
+    });
   }
 
   // ---------- Roots ----------
@@ -161,7 +199,7 @@
       const hasParents =
         (p.father && peopleById[p.father]) || (p.mother && peopleById[p.mother]);
       if (hasParents) return;
-      if (node._partner) {
+      if (node._partners && node._partners.length > 0) {
         // only the anchor of a root couple represents the family
         if (coupleAnchorOf[p.id] === p.id) roots.push(p.id);
       } else {
@@ -187,10 +225,21 @@
   function layoutRel(personId, gen) {
     if (gen > maxGen) maxGen = gen;
     const p = peopleById[personId];
-    const partnerId = p._partner;
+    const partners = p._partners || [];
+    const y = PAD + gen * (CARD_H + ROW_GAP);
+
+    // Multi-partner anchors (e.g. a man with two wives) get their own
+    // arrangement: the anchor sits in the middle and each partner's children
+    // are laid out below that partner's card.
+    if (partners.length >= 2) {
+      return layoutMultiPartner(personId, partners, gen, y);
+    }
+
+    // 0 or 1 partner — original layout: anchor on the left, partner (if any)
+    // on the right, all children centred below the anchor.
+    const partnerId = partners[0] || null;
     const unitW = partnerId ? CARD_W * 2 + COUPLE_GAP : CARD_W;
     const children = p._childrenArr;
-    const y = PAD + gen * (CARD_H + ROW_GAP);
 
     if (children.length === 0) {
       const places = {};
@@ -250,6 +299,175 @@
     const width = Math.max(unitRight, childrenSpan + shift);
     const connectX = anchorRelLeft + CARD_W / 2;
     return { width: width, connectX: connectX, places: places };
+  }
+
+  // Multi-partner layout.
+  //
+  // Cards are arranged horizontally as
+  //
+  //   [partner_0] … [partner_{L-1}] [ANCHOR] [partner_L] … [partner_{N-1}]
+  //
+  // where L = floor(N/2). For N=2 this is the natural [wife1][husband][wife2].
+  // All cards stay adjacent (one COUPLE_GAP between neighbours) so the
+  // anchor and every partner are visible together — "this man has two
+  // wives" reads instantly, no matter how many descendants each marriage
+  // has.
+  //
+  // Each partner's children form their own subtree and the subtrees are
+  // laid out left-to-right below the card cluster (in the same order as
+  // the partner cards above). The cluster is then centred horizontally
+  // over the combined children flow so the whole arrangement looks
+  // balanced. Connectors (`drawConnectors`) draw a separate descent line
+  // from each partner down to that partner's children — that's what tells
+  // you which children belong to which wife.
+  function layoutMultiPartner(personId, partners, gen, y) {
+    const p = peopleById[personId];
+    const N = partners.length;
+    const leftCount = Math.floor(N / 2);
+
+    // slots: card order at this row. null = anchor slot.
+    const slots = [];
+    for (let i = 0; i < leftCount; i++) slots.push(partners[i]);
+    slots.push(null);
+    for (let i = leftCount; i < N; i++) slots.push(partners[i]);
+
+    // Lay out each partner's children subtree (recursive). We also remember
+    // each group's own connectX (where its bus midpoint sits inside the
+    // group's frame), so we can later line that midpoint up under the
+    // partner's card centre when possible.
+    const groupOf = {};
+    partners.forEach((partnerId) => {
+      const kids = (p._childrenByPartner && p._childrenByPartner[partnerId]) || [];
+      const childResults = [];
+      let cursor = 0;
+      kids.forEach((cId, i) => {
+        const r = layoutRel(cId, gen + 1);
+        childResults.push({ id: cId, result: r, offset: cursor });
+        cursor += r.width + (i < kids.length - 1 ? SIBLING_GAP : 0);
+      });
+      let firstConnect = CARD_W / 2;
+      let lastConnect = CARD_W / 2;
+      if (childResults.length > 0) {
+        const absConnects = childResults.map((cr) => cr.result.connectX + cr.offset);
+        firstConnect = absConnects[0];
+        lastConnect = absConnects[absConnects.length - 1];
+      }
+      groupOf[partnerId] = {
+        childResults: childResults,
+        span: cursor,
+        connectX: (firstConnect + lastConnect) / 2,
+        firstConnect: firstConnect,
+        lastConnect: lastConnect,
+      };
+    });
+
+    // Cluster is the N+1 cards packed tight with COUPLE_GAP between each.
+    const clusterWidth = (N + 1) * CARD_W + N * COUPLE_GAP;
+    const step = CARD_W + COUPLE_GAP;
+
+    const partnerSlotCentre = {};
+    const partnerSlotIdx = {};
+    slots.forEach((slot, i) => {
+      if (slot !== null) {
+        partnerSlotCentre[slot] = i * step + CARD_W / 2;
+        partnerSlotIdx[slot] = i;
+      }
+    });
+
+    // PASS 1 — assign each children-group its preferred offset (so the
+    // group's bus midpoint sits below the partner's card centre), but never
+    // letting two adjacent groups overlap (min SIBLING_GAP between).
+    const groupOffset = {};
+    let lastRight = -Infinity;
+    let childrenMin = Infinity;
+    let childrenMax = -Infinity;
+    slots.forEach((slot) => {
+      if (slot === null) return;
+      const g = groupOf[slot];
+      if (g.span === 0) return;
+      const desired = partnerSlotCentre[slot] - g.connectX;
+      const minStart = lastRight === -Infinity ? -Infinity : lastRight + SIBLING_GAP;
+      const offset = Math.max(desired, minStart);
+      groupOffset[slot] = offset;
+      lastRight = offset + g.span;
+      childrenMin = Math.min(childrenMin, offset);
+      childrenMax = Math.max(childrenMax, offset + g.span);
+    });
+
+    // PASS 2 — choose a clusterStart so each partner's drop point lands
+    // inside her own children's connect range [firstConnect, lastConnect].
+    // For partner i:
+    //   partner.drop = clusterStart + slotIdx_i*step + CARD_W/2
+    // and we want:
+    //   groupOffset_i + firstConnect_i <= partner.drop <= groupOffset_i + lastConnect_i
+    // Re-arranging gives a [lo_i, hi_i] range for clusterStart per partner;
+    // the intersection of those ranges (or the midpoint if infeasible) is
+    // our final cluster position.
+    let deltaLo = -Infinity;
+    let deltaHi = Infinity;
+    partners.forEach((partnerId) => {
+      const g = groupOf[partnerId];
+      if (g.span === 0) return;
+      const slotIdx = partnerSlotIdx[partnerId];
+      const goff = groupOffset[partnerId];
+      const lo = goff + g.firstConnect - slotIdx * step - CARD_W / 2;
+      const hi = goff + g.lastConnect - slotIdx * step - CARD_W / 2;
+      deltaLo = Math.max(deltaLo, lo);
+      deltaHi = Math.min(deltaHi, hi);
+    });
+
+    let clusterStart;
+    if (deltaLo === -Infinity || deltaHi === Infinity) {
+      clusterStart = 0;
+    } else {
+      // Both feasible and infeasible cases: midpoint of [lo, hi] is the
+      // best compromise. When deltaLo > deltaHi the range is empty but the
+      // midpoint still minimises max error.
+      clusterStart = (deltaLo + deltaHi) / 2;
+    }
+
+    // Shift everything so the leftmost edge is at x=0.
+    let minRelX = clusterStart;
+    if (childrenMin !== Infinity) minRelX = Math.min(minRelX, childrenMin);
+    const shift = minRelX < 0 ? -minRelX : 0;
+    if (shift > 0) {
+      clusterStart += shift;
+      Object.keys(groupOffset).forEach((pid) => (groupOffset[pid] += shift));
+      if (childrenMax !== -Infinity) childrenMax += shift;
+    }
+
+    const totalWidth = Math.max(
+      clusterStart + clusterWidth,
+      childrenMax === -Infinity ? 0 : childrenMax
+    );
+
+    // Place cards.
+    const places = {};
+    slots.forEach((slot, i) => {
+      const x = clusterStart + i * step;
+      if (slot === null) places[personId] = { relX: x, y: y, gen: gen };
+      else places[slot] = { relX: x, y: y, gen: gen };
+    });
+
+    // Place each partner's children subtree at its computed offset.
+    partners.forEach((partnerId) => {
+      const g = groupOf[partnerId];
+      if (g.span === 0) return;
+      const off = groupOffset[partnerId];
+      g.childResults.forEach((cr) => {
+        const cPlaces = cr.result.places;
+        Object.keys(cPlaces).forEach((id) => {
+          places[id] = {
+            relX: cPlaces[id].relX + cr.offset + off,
+            y: cPlaces[id].y,
+            gen: cPlaces[id].gen,
+          };
+        });
+      });
+    });
+
+    const connectX = places[personId].relX + CARD_W / 2;
+    return { width: totalWidth, connectX: connectX, places: places };
   }
 
   // ---------- Render ----------
@@ -379,55 +597,83 @@
       const pos = positions[p.id];
       if (!pos) return;
       const node = peopleById[p.id];
-      const partnerId = node._partner;
+      const partners = node._partners || [];
 
       // Only draw outgoing lines from the anchor of a couple (avoids duplicates).
-      if (partnerId && coupleAnchorOf[p.id] !== p.id) return;
+      if (partners.length > 0 && coupleAnchorOf[p.id] !== p.id) return;
 
       const yMid = pos.y + CARD_H / 2;
-      const yBottom = pos.y + CARD_H;
 
-      // 1) Couple line — anchor card right edge to partner card left edge.
-      if (partnerId) {
+      // 1) Couple lines — one per partner. The anchor may sit on either side
+      // of any given partner (e.g. wives flanking a husband), so always draw
+      // from the inner edge of the leftmost card to the inner edge of the
+      // rightmost card at mid-height.
+      partners.forEach((partnerId) => {
         const ppos = positions[partnerId];
-        segments.push(`M ${pos.x + CARD_W} ${yMid} L ${ppos.x} ${yMid}`);
-      }
-
-      const children = node._childrenArr;
-      if (!children || children.length === 0) return;
-
-      // 2) Descent emerges from the bloodline anchor's bottom-centre.
-      const parentDropX = pos.x + CARD_W / 2;
-      const parentDropY = yBottom;
-      const busY = pos.y + CARD_H + ROW_GAP / 2;
-
-      // Each child connects at its own bloodline anchor card top-centre.
-      const childPoints = children.map((cId) => {
-        const cPos = positions[cId];
-        return { x: cPos.x + CARD_W / 2, y: cPos.y };
+        if (!ppos) return;
+        if (pos.x < ppos.x) {
+          segments.push(`M ${pos.x + CARD_W} ${yMid} L ${ppos.x} ${yMid}`);
+        } else {
+          segments.push(`M ${ppos.x + CARD_W} ${yMid} L ${pos.x} ${yMid}`);
+        }
       });
 
-      // Drop from parent's bottom-centre to the bus.
-      segments.push(`M ${parentDropX} ${parentDropY} L ${parentDropX} ${busY}`);
-
-      // Sibling bus spans every drop X plus the parent drop X.
-      const allXs = [parentDropX].concat(childPoints.map((cp) => cp.x));
-      const minX = Math.min.apply(null, allXs);
-      const maxX = Math.max.apply(null, allXs);
-      if (maxX - minX > 0.5) {
-        segments.push(`M ${minX} ${busY} L ${maxX} ${busY}`);
+      // 2) Descent lines.
+      //
+      // Single-partner / no-partner: descent emerges from the anchor's
+      // bottom-centre and feeds the full _childrenArr (unchanged behaviour).
+      //
+      // Multi-partner: each partner has their own children group, so the
+      // descent for each marriage drops from that partner's (the mother's)
+      // bottom-centre. This makes "which children belong to which wife"
+      // unambiguous.
+      if (partners.length >= 2) {
+        partners.forEach((partnerId) => {
+          const ppos = positions[partnerId];
+          if (!ppos) return;
+          const kids = (node._childrenByPartner && node._childrenByPartner[partnerId]) || [];
+          if (kids.length === 0) return;
+          drawDescent(segments, ppos.x + CARD_W / 2, ppos.y + CARD_H, ppos.y, kids);
+        });
+      } else {
+        const children = node._childrenArr;
+        if (!children || children.length === 0) return;
+        drawDescent(segments, pos.x + CARD_W / 2, pos.y + CARD_H, pos.y, children);
       }
-
-      // Drop from bus down to each child's anchor card top.
-      childPoints.forEach((cp) => {
-        segments.push(`M ${cp.x} ${busY} L ${cp.x} ${cp.y}`);
-      });
     });
 
     if (segments.length === 0) return;
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute("d", segments.join(" "));
     svgEl.appendChild(path);
+  }
+
+  function drawDescent(segments, parentDropX, parentDropY, parentY, children) {
+    const busY = parentY + CARD_H + ROW_GAP / 2;
+
+    const childPoints = children
+      .map((cId) => {
+        const cPos = positions[cId];
+        return cPos ? { x: cPos.x + CARD_W / 2, y: cPos.y } : null;
+      })
+      .filter(Boolean);
+    if (childPoints.length === 0) return;
+
+    // Drop from parent's bottom-centre to the bus.
+    segments.push(`M ${parentDropX} ${parentDropY} L ${parentDropX} ${busY}`);
+
+    // Sibling bus spans every drop X plus the parent drop X.
+    const allXs = [parentDropX].concat(childPoints.map((cp) => cp.x));
+    const minX = Math.min.apply(null, allXs);
+    const maxX = Math.max.apply(null, allXs);
+    if (maxX - minX > 0.5) {
+      segments.push(`M ${minX} ${busY} L ${maxX} ${busY}`);
+    }
+
+    // Drop from bus down to each child's anchor card top.
+    childPoints.forEach((cp) => {
+      segments.push(`M ${cp.x} ${busY} L ${cp.x} ${cp.y}`);
+    });
   }
 
   // ---------- Detail panel ----------
@@ -441,18 +687,15 @@
     if (cardEl) cardEl.classList.add("focused");
 
     const names = parseName(p.name);
-    const partnerId = peopleById[p.id]._partner;
-    const partner = partnerId ? peopleById[partnerId] : null;
+    const partnerIds = peopleById[p.id]._partners || [];
+    const partners = partnerIds.map((pid) => peopleById[pid]).filter(Boolean);
     const father = p.father ? peopleById[p.father] : null;
     const mother = p.mother ? peopleById[p.mother] : null;
 
     // Children of this person are stored on the anchor; if this person is the partner, look up the anchor.
     const anchorId = coupleAnchorOf[p.id] || p.id;
-    const childrenIds = (peopleById[anchorId]._childrenArr || []).filter((c) => {
-      // If person is the anchor: all listed children are theirs.
-      // If person is the partner: same children apply (shared with anchor).
-      return true;
-    });
+    const anchorNode = peopleById[anchorId];
+    const childrenIds = anchorNode._childrenArr || [];
 
     detailBodyEl.innerHTML = "";
 
@@ -504,14 +747,42 @@
       detailBodyEl.appendChild(ul);
     }
 
-    if (partner) {
-      detailBodyEl.appendChild(sectionTitle("Partner"));
+    if (partners.length) {
+      detailBodyEl.appendChild(sectionTitle(partners.length > 1 ? "Partners" : "Partner"));
       const ul = document.createElement("ul");
-      ul.appendChild(personLink(partner, partner.gender === "female" ? "Wife" : "Husband"));
+      partners.forEach((partner) => {
+        ul.appendChild(personLink(partner, partner.gender === "female" ? "Wife" : "Husband"));
+      });
       detailBodyEl.appendChild(ul);
     }
 
-    if (childrenIds.length) {
+    // When the anchor has more than one partner, group children under each
+    // marriage so it's clear which children belong to which wife/husband.
+    const anchorPartners = anchorNode._partners || [];
+    if (
+      anchorPartners.length >= 2 &&
+      anchorNode._childrenByPartner &&
+      childrenIds.length
+    ) {
+      anchorPartners.forEach((pid) => {
+        const partner = peopleById[pid];
+        const groupKids = (anchorNode._childrenByPartner[pid] || []).filter((c) =>
+          peopleById[c]
+        );
+        if (groupKids.length === 0) return;
+        const partnerNames = partner ? parseName(partner.name) : { ta: "", en: "" };
+        const label = partner
+          ? "Children with " + (partnerNames.ta || partnerNames.en || "—")
+          : "Children";
+        detailBodyEl.appendChild(sectionTitle(label));
+        const ul = document.createElement("ul");
+        groupKids.forEach((cid) => {
+          const c = peopleById[cid];
+          ul.appendChild(personLink(c, c.gender === "female" ? "Daughter" : "Son"));
+        });
+        detailBodyEl.appendChild(ul);
+      });
+    } else if (childrenIds.length) {
       detailBodyEl.appendChild(sectionTitle("Children"));
       const ul = document.createElement("ul");
       childrenIds.forEach((cid) => {
