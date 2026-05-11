@@ -204,6 +204,142 @@
       "mother": "karuppagoundar-wife1"
     },
 
+    {
+      "id": "chinaagoundar-g1",
+      "name": "பெண் 1",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "chinaagoundar"
+    },
+
+    {
+      "id": "kitakgoundar-wife1",
+      "name": "மனைவி 1",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": ""
+    },
+    {
+      "id": "kitakgoundar-b1",
+      "name": "ஆண் ",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "kitakgoundar",
+      "mother": "kitakgoundar-wife1"
+    },
+    {
+      "id": "kitakgoundar-g1",
+      "name": "பெண் 1",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "kitakgoundar",
+      "mother": "kitakgoundar-wife1"
+    },
+    {
+      "id": "kitakgoundar-g2",
+      "name": "பெண் 2",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "kitakgoundar",
+      "mother": "kitakgoundar-wife1"
+    },
+
+    {
+      "id": "kitakgoundar-wife2",
+      "name": "மனைவி 2",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": ""
+    },
+    {
+      "id": "rani",
+      "name": "ராணி (Rani)",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "kitakgoundar",
+      "mother": "kitakgoundar-wife2"
+    },
+    {
+      "id": "sivaji",
+      "name": "சிவாஜி (Sivaji)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "kitakgoundar",
+      "mother": "kitakgoundar-wife2"
+    },
+
+    {
+      "id": "rangasamy-1",
+      "name": "ரங்கசாமி (Rangasamy)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "velaakgoundar"
+    },
+    {
+      "id": "aarukutty",
+      "name": "ஆறுக்குட்டி (Aarukutty)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "velaakgoundar"
+    },
+
+
+    {
+      "id": "sadaiyagoundar",
+      "name": "சடையகவுண்டர் (Sadaiyagoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "kumaragoundar"
+    },
+    {
+      "id": "kitnagoundar",
+      "name": "கிட்ணகவுண்டர் (Kitnagoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "kumaragoundar"
+    },
+    {
+      "id": "nanjappagoundar-3",
+      "name": "நஞ்சப்பகவுண்டர் (Nanjappagoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "kumaragoundar"
+    },
+    {
+      "id": "palanikgoundar",
+      "name": "பழனிக்கவுண்டர் (Palanikgoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "kumaragoundar"
+    },
+
+
 
     {
       "id": "kaniyappagoundar",
@@ -631,6 +767,9 @@
 
     { "type": "partner", "person1": "subramani", "person2": "subramani-wife1" },
     { "type": "partner", "person1": "subramani", "person2": "subramani-wife2" },
+
+    { "type": "partner", "person1": "kitakgoundar", "person2": "kitakgoundar-wife1" },
+    { "type": "partner", "person1": "kitakgoundar", "person2": "kitakgoundar-wife2" },
 
     { "type": "partner", "person1": "karupana-goundar", "person2": "ramathal" },
     { "type": "partner", "person1": "palanisamy", "person2": "kokilamani" },
