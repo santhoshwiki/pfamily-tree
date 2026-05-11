@@ -510,6 +510,72 @@
 
 
     {
+      "id": "kannusamy",
+      "name": "கண்ணுசாமி (Kannusamy)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "kaniyappagoundar"
+    },
+    {
+      "id": "subaiyan",
+      "name": "சுப்பையன் (Subaiyan)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "kaniyappagoundar"
+    },
+    {
+      "id": "kaniyappagoundar-g1",
+      "name": "பெண் 1",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "kaniyappagoundar"
+    },
+
+    {
+      "id": "nanjappa-goundar-3-b1",
+      "name": "ஆண் 1",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "nanjappa-goundar-3"
+    },
+    {
+      "id": "muthusamy",
+      "name": "முத்துசாமி (Muthusamy)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "nanjappa-goundar-3"
+    },
+    {
+      "id": "sampath",
+      "name": "சம்பத் (Sampath)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "muthusamy"
+    },
+    {
+      "id": "ratha",
+      "name": "ராதா (Ratha)",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "muthusamy"
+    },
+
+
+    {
       "id": "karupana-goundar",
       "name": "கருப்பண்ண கவுண்டர் (Karupana Goundar)",
       "gender": "male",
