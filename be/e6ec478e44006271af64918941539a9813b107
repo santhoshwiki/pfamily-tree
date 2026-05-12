@@ -1,0 +1,22 @@
+styles.css
+  s_e02a9992d61cbf::t_b687e0620c9698 664-668
+  s_e02a9992d61cbf::t_5839c61e9c561c 923,930-937
+  s_e02a9992d61cbf::t_0f47374ac43df1 924-929
+  s_e02a9992d61cbf::t_b24513ec89aa36 1010-1062
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "bee6ec478e44006271af64918941539a9813b107",
+  "prompts": {},
+  "sessions": {
+    "s_e02a9992d61cbf": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "140a35f4-b886-4642-8f3a-17de1ca22720",
+        "model": "claude-opus-4-7-thinking-xhigh"
+      },
+      "human_author": "Santhoshkumar. P <mail2palanisamyk@gmail.com>"
+    }
+  }
+}
