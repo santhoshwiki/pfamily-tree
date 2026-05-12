@@ -661,6 +661,11 @@ body.list-view-active .list-view {
   display: block;
 }
 
+/* Zoom and "Fit" only apply to the pan/zoom canvas — hide them in list view. */
+body.list-view-active .zoom-controls {
+  display: none;
+}
+
 .list-view .list-roots {
   display: flex;
   flex-direction: column;
@@ -915,6 +920,21 @@ body.list-view-active .list-view {
     padding: 0 8px;
   }
 
+  /* In list view the zoom row is hidden, so collapse the grid to a single
+     row instead of leaving an empty track + row gap. Also reclaim the
+     vertical space the missing row used to occupy. */
+  body.list-view-active {
+    --header-h: 78px;
+  }
+
+  body.list-view-active .controls {
+    grid-template-areas: "search toggle";
+  }
+
+  body.list-view-active .app-header {
+    min-height: 0;
+  }
+
   /* Compact card visuals — JS uses 140x64 too. */
   .card {
     width: 140px;
@@ -987,7 +1007,59 @@ body.list-view-active .list-view {
   /* Tighten the list view's padding on phones where the content column
      already stretches edge-to-edge. */
   .list-view {
-    padding: 14px 12px 40px;
+    padding: 12px 6px 40px;
+  }
+
+  /* Deeply nested rows were running out of horizontal room because each
+     level added 36px of indent (22 margin + 14 padding). On a 412px
+     screen, that means depth 9+ leaves zero room for the name. Cut the
+     per-level indent to 14px so a 10-generation chain still fits. */
+  .list-view .list-children {
+    margin-left: 4px;
+    padding-left: 10px;
+  }
+
+  .list-view .list-roots {
+    gap: 8px;
+    max-width: none;
+  }
+
+  /* Compact the row chrome too, so the .list-info column keeps as much
+     of the remaining width as possible. */
+  .list-view details > summary {
+    padding: 6px 6px 6px 4px;
+    gap: 8px;
+    border-radius: 10px;
+  }
+
+  .list-view .chev {
+    width: 14px;
+    height: 14px;
+    flex: 0 0 14px;
+    font-size: 14px;
+  }
+
+  .list-view .list-photo {
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+    font-size: 11px;
+  }
+
+  .list-view .list-name {
+    font-size: 13px;
+  }
+
+  .list-view .list-name-en,
+  .list-view .list-partners,
+  .list-view .list-meta {
+    font-size: 10px;
+  }
+
+  .list-view .list-open {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
   }
 }
 
