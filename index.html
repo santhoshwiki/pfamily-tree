@@ -21,7 +21,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=2026-05-11" />
+    <link rel="stylesheet" href="styles.css?v=2026-05-12" />
   </head>
   <body>
     <header class="app-header">
@@ -48,8 +48,20 @@
           <button id="zoom-in" aria-label="Zoom in">+</button>
           <button id="fit" aria-label="Fit to screen">Fit</button>
         </div>
+        <button
+          id="view-toggle"
+          class="view-toggle"
+          type="button"
+          aria-label="Switch to list view"
+          aria-pressed="false"
+        >
+          <span class="view-toggle-icon" aria-hidden="true"></span>
+          <span class="view-toggle-label">List</span>
+        </button>
       </div>
     </header>
+
+    <nav class="gen-jumper" id="gen-jumper" aria-label="Jump to generation"></nav>
 
     <main class="viewport" id="viewport">
       <div class="canvas" id="canvas">
@@ -68,6 +80,8 @@
       <div class="legend" id="legend"></div>
     </main>
 
+    <section class="list-view" id="list-view" hidden aria-label="Family hierarchy list"></section>
+
     <aside class="detail" id="detail" hidden aria-live="polite">
       <button class="close" id="detail-close" aria-label="Close details">&times;</button>
       <div class="detail-body" id="detail-body"></div>
@@ -76,6 +90,6 @@
     <div class="loading" id="loading">Loading family tree…</div>
     <div class="error" id="error" hidden></div>
 
-    <script src="app.js?v=2026-05-11"></script>
+    <script src="app.js?v=2026-05-12"></script>
   </body>
 </html>

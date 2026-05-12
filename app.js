@@ -14,13 +14,40 @@
   "use strict";
 
   // ---------- Layout constants ----------
-  const CARD_W = 220;
-  const CARD_H = 76;
-  const COUPLE_GAP = 28; // visual gap between two partner cards
-  const SIBLING_GAP = 36; // gap between sibling subtrees
-  const FAMILY_GAP = 120; // gap between disconnected family trees
-  const ROW_GAP = 88; // vertical gap between generations
-  const PAD = 80; // outer padding around the whole canvas
+  //
+  // Two presets — desktop (the original) and a compact phone preset. They are
+  // selected by `setLayout()` below at boot and whenever the breakpoint flips
+  // (e.g. orientation change). The cards' CSS `width`/`height` is kept in
+  // sync with these constants via the matching @media block in styles.css.
+  const MOBILE_MQ = window.matchMedia("(max-width: 700px)");
+  let CARD_W;
+  let CARD_H;
+  let COUPLE_GAP; // gap between two partner cards
+  let SIBLING_GAP; // gap between sibling subtrees
+  let FAMILY_GAP; // gap between disconnected family trees
+  let ROW_GAP; // vertical gap between generations
+  let PAD; // outer padding around the whole canvas
+
+  function setLayout() {
+    if (MOBILE_MQ.matches) {
+      CARD_W = 140;
+      CARD_H = 64;
+      COUPLE_GAP = 16;
+      SIBLING_GAP = 22;
+      FAMILY_GAP = 64;
+      ROW_GAP = 56;
+      PAD = 32;
+    } else {
+      CARD_W = 220;
+      CARD_H = 76;
+      COUPLE_GAP = 28;
+      SIBLING_GAP = 36;
+      FAMILY_GAP = 120;
+      ROW_GAP = 88;
+      PAD = 80;
+    }
+  }
+  setLayout();
 
   // ---------- DOM ----------
   const cardsEl = document.getElementById("cards");
@@ -34,13 +61,25 @@
   const loadingEl = document.getElementById("loading");
   const errorEl = document.getElementById("error");
   const legendEl = document.getElementById("legend");
+  const genJumperEl = document.getElementById("gen-jumper");
+  const listViewEl = document.getElementById("list-view");
+  const viewToggleEl = document.getElementById("view-toggle");
+  const viewToggleLabelEl = viewToggleEl
+    ? viewToggleEl.querySelector(".view-toggle-label")
+    : null;
 
+  let appData = null; // raw JSON; kept so we can re-render on breakpoint flip
   let peopleById = {};
   let coupleAnchorOf = {}; // personId -> anchor personId (the bloodline parent of a couple)
   let positions = {}; // personId -> { x, y, gen }
   let canvasW = 0;
   let canvasH = 0;
   let maxGen = 0;
+
+  // listRowOf and listParentOf are populated by renderListView() so search
+  // can find each person's row and expand its ancestors.
+  let listRowOf = {}; // personId -> <details> element
+  let listParentOf = {}; // personId -> parent personId in the list outline
 
   // ---------- Boot ----------
   // Pick which data file to load. Defaults to family.json. You can swap to a
@@ -70,11 +109,20 @@
       return r.json();
     })
     .then((data) => {
+      appData = data;
       build(data);
       render(data);
       loadingEl.remove();
       panZoom.init();
       buildLegend();
+      renderGenJumper();
+      renderListView();
+      initViewToggle();
+      // Re-layout when the mobile/desktop breakpoint flips (rotation, window
+      // resize on a desktop, devtools narrow-mode toggle, …).
+      const onMQChange = () => relayout();
+      if (MOBILE_MQ.addEventListener) MOBILE_MQ.addEventListener("change", onMQChange);
+      else if (MOBILE_MQ.addListener) MOBILE_MQ.addListener(onMQChange); // Safari < 14
       // Reflect the loaded file in the header subtitle so it's obvious which
       // dataset is currently displayed.
       const sub = document.getElementById("subtitle");
@@ -92,6 +140,29 @@
         DATA_URL +
         ". If you're opening index.html directly with file://, run a local server: `python3 -m http.server` and open http://localhost:8000.";
     });
+
+  // ---------- Relayout (breakpoint flip) ----------
+  // The tree's pixel positions are computed in JS, so when the mobile/desktop
+  // breakpoint changes we need to recompute all of them with the new card and
+  // gap sizes — otherwise cards would overlap (mobile sizes with desktop
+  // gaps) or float far apart (desktop sizes inside mobile cards).
+  function relayout() {
+    if (!appData) return;
+    setLayout();
+    cardsEl.innerHTML = "";
+    svgEl.innerHTML = "";
+    positions = {};
+    canvasW = 0;
+    canvasH = 0;
+    maxGen = 0;
+    render(appData);
+    renderGenJumper();
+    panZoom.recenter();
+    // Keep the list view in sync too (so its DOM matches the latest data),
+    // and re-apply any active search filter.
+    renderListView();
+    applySearch();
+  }
 
   // ---------- Build family graph ----------
   function build(data) {
@@ -829,30 +900,80 @@
   });
 
   // ---------- Search ----------
-  searchEl.addEventListener("input", () => {
+  //
+  // Search filters both views in lockstep. In tree mode, matches are
+  // highlighted and the first match is centred. In list mode, matches are
+  // highlighted and their ancestor outline rows are auto-expanded so the
+  // matched person is visible.
+  function personHay(p) {
+    const partnerIds = (peopleById[p.id] && peopleById[p.id]._partners) || [];
+    const partnerNames = partnerIds
+      .map((pid) => (peopleById[pid] && peopleById[pid].name) || "")
+      .join(" ");
+    return (
+      (p.name || "").toLowerCase() +
+      " " +
+      partnerNames.toLowerCase() +
+      " " +
+      (p.place || "").toLowerCase() +
+      " " +
+      (p.id || "").toLowerCase()
+    );
+  }
+
+  function applySearch() {
     const q = searchEl.value.trim().toLowerCase();
     const cards = cardsEl.querySelectorAll(".card");
+
+    // Tree-view filter.
     if (!q) {
       cards.forEach((c) => c.classList.remove("dimmed", "matched"));
-      return;
+    } else {
+      cards.forEach((c) => {
+        const id = c.dataset.id;
+        const p = peopleById[id];
+        if (!p) return;
+        const matches = personHay(p).indexOf(q) !== -1;
+        c.classList.toggle("matched", matches);
+        c.classList.toggle("dimmed", !matches);
+      });
     }
-    let firstMatch = null;
-    cards.forEach((c) => {
-      const id = c.dataset.id;
+
+    // List-view filter.
+    Object.keys(listRowOf).forEach((id) => {
+      const row = listRowOf[id];
+      const summary = row.querySelector(":scope > summary");
+      if (!summary) return;
+      if (!q) {
+        summary.classList.remove("matched", "dimmed");
+        return;
+      }
       const p = peopleById[id];
-      const hay =
-        (p.name || "").toLowerCase() +
-        " " +
-        (p.place || "").toLowerCase() +
-        " " +
-        (p.id || "").toLowerCase();
-      const matches = hay.indexOf(q) !== -1;
-      c.classList.toggle("matched", matches);
-      c.classList.toggle("dimmed", !matches);
-      if (matches && !firstMatch) firstMatch = id;
+      const matches = p ? personHay(p).indexOf(q) !== -1 : false;
+      summary.classList.toggle("matched", matches);
+      summary.classList.toggle("dimmed", !matches);
+      if (matches) {
+        // Expand ancestors so the match is actually visible in the outline.
+        let cursor = listParentOf[id];
+        while (cursor) {
+          const parentRow = listRowOf[cursor];
+          if (parentRow) parentRow.open = true;
+          cursor = listParentOf[cursor];
+        }
+      }
     });
-    if (firstMatch) panZoom.focusOn(firstMatch);
-  });
+
+    // Centre the tree-view on the first match (no-op in list mode).
+    if (q && !document.body.classList.contains("list-view-active")) {
+      let firstMatch = null;
+      cards.forEach((c) => {
+        if (!firstMatch && c.classList.contains("matched")) firstMatch = c.dataset.id;
+      });
+      if (firstMatch) panZoom.focusOn(firstMatch);
+    }
+  }
+
+  searchEl.addEventListener("input", applySearch);
 
   // ---------- Pan / Zoom ----------
   const panZoom = (function () {
@@ -884,6 +1005,26 @@
       apply();
     }
 
+    // recenter() picks a sensible default for the current screen. On
+    // wide screens we fit-to-screen so users get the classic "see the whole
+    // tree" overview. On phones, fit-to-screen makes every card unreadable
+    // for any non-trivial tree, so we start at scale=1.0 centred horizontally
+    // on the canvas with the root generation at the top of the viewport.
+    function recenter() {
+      if (canvasW === 0 || canvasH === 0) return;
+      const vw = viewportEl.clientWidth;
+      const vh = viewportEl.clientHeight;
+      if (MOBILE_MQ.matches) {
+        scale = 1;
+        tx = (vw - canvasW * scale) / 2;
+        ty = 16; // small top inset so the first row peeks below the chrome
+      } else {
+        fit();
+        return;
+      }
+      apply();
+    }
+
     function focusOn(id) {
       const pos = positions[id];
       if (!pos) return;
@@ -907,7 +1048,7 @@
     }
 
     function init() {
-      fit();
+      recenter();
 
       // Mouse pan
       viewportEl.addEventListener("mousedown", (e) => {
@@ -1009,7 +1150,7 @@
       });
     }
 
-    return { init: init, focusOn: focusOn, fit: fit };
+    return { init: init, focusOn: focusOn, fit: fit, recenter: recenter };
   })();
 
   // ---------- Legend ----------
@@ -1072,5 +1213,261 @@
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#39;");
+  }
+
+  // ---------- Generation jumper (mobile-only) ----------
+  //
+  // A horizontal strip of chips, one per generation present in the dataset.
+  // Tapping a chip pans the canvas to the leftmost person in that generation
+  // at a comfortable read-zoom. Hidden via CSS on desktop, where overview +
+  // pan/zoom is already adequate.
+  function renderGenJumper() {
+    if (!genJumperEl) return;
+    genJumperEl.innerHTML = "";
+
+    const firstInGen = {};
+    Object.keys(positions).forEach((id) => {
+      const p = positions[id];
+      const cur = firstInGen[p.gen];
+      if (!cur || p.x < cur.x) firstInGen[p.gen] = { id: id, x: p.x };
+    });
+    const gens = Object.keys(firstInGen)
+      .map((n) => parseInt(n, 10))
+      .sort((a, b) => a - b);
+
+    gens.forEach((g) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.setAttribute("aria-label", "Jump to generation " + (g + 1));
+      const dot = document.createElement("span");
+      dot.className = "dot";
+      dot.style.background = "var(--gen-" + (g % 8) + ")";
+      const lab = document.createElement("span");
+      lab.textContent = "G" + (g + 1);
+      btn.appendChild(dot);
+      btn.appendChild(lab);
+      btn.addEventListener("click", () => {
+        const target = firstInGen[g];
+        if (!target) return;
+        // Mark this chip as active; clear others.
+        genJumperEl
+          .querySelectorAll("button.active")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        panZoom.focusOn(target.id);
+      });
+      genJumperEl.appendChild(btn);
+    });
+  }
+
+  // ---------- List view (mobile alternate to the canvas) ----------
+  //
+  // Renders a nested outline of the tree. Each list node is a <details>
+  // element whose <summary> is the row UI and whose body contains the
+  // children. Multi-partner anchors group their children under "Children
+  // with <partner>" sub-headers so the marriage each child belongs to is
+  // explicit (same convention as the detail panel).
+  function renderListView() {
+    if (!listViewEl || !appData) return;
+    listViewEl.innerHTML = "";
+    listRowOf = {};
+    listParentOf = {};
+
+    const roots = findRoots(appData);
+    if (roots.length === 0) {
+      const empty = document.createElement("div");
+      empty.className = "list-empty";
+      empty.textContent = "No people to display.";
+      listViewEl.appendChild(empty);
+      return;
+    }
+
+    const wrap = document.createElement("div");
+    wrap.className = "list-roots";
+    roots.forEach((rootId) => {
+      const node = renderListNode(rootId, 0, null);
+      if (node) wrap.appendChild(node);
+    });
+    listViewEl.appendChild(wrap);
+  }
+
+  function renderListNode(personId, gen, parentId) {
+    const p = peopleById[personId];
+    if (!p) return null;
+
+    const details = document.createElement("details");
+    details.className = "list-node gen-" + (gen % 8);
+    details.dataset.id = personId;
+    // Roots default to open; deeper levels start collapsed so the screen
+    // doesn't blow up with hundreds of rows on first paint.
+    if (gen === 0) details.open = true;
+
+    const summary = document.createElement("summary");
+
+    const childrenIds = p._childrenArr || [];
+    const hasChildren = childrenIds.length > 0;
+
+    const chev = document.createElement("span");
+    chev.className = "chev" + (hasChildren ? "" : " leaf");
+    chev.textContent = "›";
+    summary.appendChild(chev);
+
+    const names = parseName(p.name);
+    const photo = document.createElement("div");
+    photo.className = "list-photo";
+    if (p.photo) {
+      const img = document.createElement("img");
+      img.alt = names.en || "";
+      img.loading = "lazy";
+      img.referrerPolicy = "no-referrer";
+      img.src = p.photo;
+      img.addEventListener("error", () => {
+        photo.removeChild(img);
+        photo.textContent = initials(names.en || names.ta);
+      });
+      photo.appendChild(img);
+    } else {
+      photo.textContent = initials(names.en || names.ta);
+    }
+    summary.appendChild(photo);
+
+    const info = document.createElement("div");
+    info.className = "list-info";
+    const nameEl = document.createElement("span");
+    nameEl.className = "list-name";
+    nameEl.textContent = names.ta || names.en || "—";
+    info.appendChild(nameEl);
+    if (names.en) {
+      const en = document.createElement("span");
+      en.className = "list-name-en";
+      en.textContent = names.en;
+      info.appendChild(en);
+    }
+
+    // Show partners inline so searching for a partner's name finds the
+    // anchor row, and so the marriage(s) are visible without expanding.
+    const partnerIds = p._partners || [];
+    if (partnerIds.length) {
+      const partnersEl = document.createElement("span");
+      partnersEl.className = "list-partners";
+      const partnerNames = partnerIds
+        .map((pid) => {
+          const partner = peopleById[pid];
+          if (!partner) return "";
+          const pn = parseName(partner.name);
+          return pn.ta || pn.en || "";
+        })
+        .filter(Boolean);
+      if (partnerNames.length) partnersEl.textContent = "+ " + partnerNames.join(" / ");
+      info.appendChild(partnersEl);
+    }
+
+    const metaText = formatYears(p) + (p.place ? " · " + p.place : "");
+    if (metaText.trim()) {
+      const metaEl = document.createElement("span");
+      metaEl.className = "list-meta";
+      metaEl.textContent = metaText;
+      info.appendChild(metaEl);
+    }
+    summary.appendChild(info);
+
+    const openBtn = document.createElement("button");
+    openBtn.type = "button";
+    openBtn.className = "list-open";
+    openBtn.setAttribute("aria-label", "Open details");
+    openBtn.textContent = "↗";
+    openBtn.addEventListener("click", (e) => {
+      // Don't toggle the disclosure when opening the side panel.
+      e.preventDefault();
+      e.stopPropagation();
+      showDetail(personId);
+    });
+    summary.appendChild(openBtn);
+
+    details.appendChild(summary);
+
+    if (hasChildren) {
+      const childrenWrap = document.createElement("div");
+      childrenWrap.className = "list-children";
+
+      // For multi-partner anchors, group children under "Children with X"
+      // so it's clear which kids belong to which marriage.
+      if (partnerIds.length >= 2 && p._childrenByPartner) {
+        partnerIds.forEach((pid) => {
+          const groupKids = (p._childrenByPartner[pid] || []).filter(
+            (c) => peopleById[c]
+          );
+          if (groupKids.length === 0) return;
+          const partner = peopleById[pid];
+          const partnerNames = partner ? parseName(partner.name) : { ta: "", en: "" };
+          const header = document.createElement("div");
+          header.className = "list-meta";
+          header.style.padding = "2px 0 2px 4px";
+          header.textContent =
+            "Children with " + (partnerNames.ta || partnerNames.en || "—");
+          childrenWrap.appendChild(header);
+          groupKids.forEach((cid) => {
+            const sub = renderListNode(cid, gen + 1, personId);
+            if (sub) childrenWrap.appendChild(sub);
+          });
+        });
+      } else {
+        childrenIds.forEach((cid) => {
+          const sub = renderListNode(cid, gen + 1, personId);
+          if (sub) childrenWrap.appendChild(sub);
+        });
+      }
+
+      details.appendChild(childrenWrap);
+    }
+
+    listRowOf[personId] = details;
+    if (parentId) listParentOf[personId] = parentId;
+
+    return details;
+  }
+
+  // ---------- View toggle (mobile: tree <-> list) ----------
+  function initViewToggle() {
+    if (!viewToggleEl) return;
+
+    const stored = (function () {
+      try {
+        return localStorage.getItem("ft.view");
+      } catch (_) {
+        return null;
+      }
+    })();
+    const initial = stored === "list" ? "list" : "tree";
+    applyView(initial);
+
+    viewToggleEl.addEventListener("click", () => {
+      const next = document.body.classList.contains("list-view-active")
+        ? "tree"
+        : "list";
+      applyView(next);
+      try {
+        localStorage.setItem("ft.view", next);
+      } catch (_) {
+        /* ignore */
+      }
+      // Re-apply search so the newly visible view picks up the current query.
+      applySearch();
+    });
+  }
+
+  function applyView(mode) {
+    const isList = mode === "list";
+    document.body.classList.toggle("list-view-active", isList);
+    if (viewToggleEl) {
+      viewToggleEl.setAttribute("aria-pressed", isList ? "true" : "false");
+      viewToggleEl.setAttribute(
+        "aria-label",
+        isList ? "Switch to tree view" : "Switch to list view"
+      );
+    }
+    if (viewToggleLabelEl) {
+      viewToggleLabelEl.textContent = isList ? "Tree" : "List";
+    }
   }
 })();

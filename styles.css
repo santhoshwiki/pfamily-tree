@@ -138,6 +138,113 @@ body {
   background: rgba(31, 42, 68, 0.14);
 }
 
+/* View toggle (tree <-> list). Visible on every screen size; the mobile
+   media query below only tweaks placement. */
+.view-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(31, 42, 68, 0.15);
+  background: white;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.view-toggle:hover {
+  background: rgba(31, 42, 68, 0.05);
+}
+
+.view-toggle:active {
+  background: rgba(31, 42, 68, 0.12);
+}
+
+.view-toggle .view-toggle-icon {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  background-image: linear-gradient(currentColor, currentColor),
+    linear-gradient(currentColor, currentColor),
+    linear-gradient(currentColor, currentColor);
+  background-size: 100% 2px, 100% 2px, 100% 2px;
+  background-position: 0 2px, 0 6px, 0 10px;
+  background-repeat: no-repeat;
+}
+
+body.list-view-active .view-toggle .view-toggle-icon {
+  /* Switch to a "tree" glyph when list is active so the button reads as
+     "switch back to tree" — three short branching ticks. */
+  background-image: linear-gradient(currentColor, currentColor),
+    linear-gradient(currentColor, currentColor),
+    linear-gradient(currentColor, currentColor);
+  background-size: 2px 100%, 60% 2px, 60% 2px;
+  background-position: 6px 0, 6px 4px, 6px 10px;
+}
+
+/* ---------- Generation jumper (mobile only) ---------- */
+
+.gen-jumper {
+  display: none; /* shown by the mobile media query */
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--header-h);
+  height: 38px;
+  padding: 6px 12px;
+  gap: 6px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+  border-bottom: 1px solid rgba(31, 42, 68, 0.08);
+  z-index: 9;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+}
+
+.gen-jumper::-webkit-scrollbar {
+  display: none;
+}
+
+.gen-jumper button {
+  flex: 0 0 auto;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid rgba(31, 42, 68, 0.12);
+  border-radius: 999px;
+  background: white;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.gen-jumper button:active {
+  background: rgba(31, 42, 68, 0.06);
+}
+
+.gen-jumper button .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.gen-jumper button.active {
+  border-color: var(--line);
+  background: var(--line);
+  color: white;
+}
+
 /* ---------- Viewport / Canvas ---------- */
 
 .viewport {
@@ -523,17 +630,375 @@ body {
   color: #b3261e;
 }
 
-@media (max-width: 768px) {
+/* ---------- List view (alternate hierarchical outline) ----------
+   Available on every viewport via the header toggle. On wide screens the
+   content column is centred with a max-width so rows stay comfortable to
+   read; on phones it stretches edge-to-edge. */
+
+.list-view {
+  display: none; /* shown when body.list-view-active is set */
+  position: absolute;
+  top: var(--header-h);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  background: var(--bg);
+  background-image: radial-gradient(circle at 1px 1px, var(--bg-grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+  padding: 24px 16px 48px;
+  -webkit-overflow-scrolling: touch;
+  z-index: 5;
+}
+
+/* Show/hide is now driven by the toggle, not the viewport size. */
+body.list-view-active .viewport,
+body.list-view-active .gen-jumper {
+  display: none;
+}
+
+body.list-view-active .list-view {
+  display: block;
+}
+
+.list-view .list-roots {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.list-view .list-node {
+  position: relative;
+}
+
+.list-view .list-children {
+  margin-left: 22px;
+  padding-left: 14px;
+  border-left: 2px solid rgba(31, 42, 68, 0.12);
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.list-view details > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px 8px 6px;
+  border-radius: 12px;
+  background: var(--gen-0);
+  box-shadow: var(--shadow);
+  position: relative;
+  user-select: none;
+}
+
+.list-view details > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Re-use the same gen-N palette tokens already defined for cards. */
+.list-view details.gen-0 > summary { background: var(--gen-0); }
+.list-view details.gen-1 > summary { background: var(--gen-1); }
+.list-view details.gen-2 > summary { background: var(--gen-2); }
+.list-view details.gen-3 > summary { background: var(--gen-3); }
+.list-view details.gen-4 > summary { background: var(--gen-4); }
+.list-view details.gen-5 > summary { background: var(--gen-5); }
+.list-view details.gen-6 > summary { background: var(--gen-6); }
+.list-view details.gen-7 > summary { background: var(--gen-7); }
+
+.list-view .chev {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(31, 42, 68, 0.6);
+  transition: transform 0.15s ease;
+}
+
+.list-view .chev.leaf {
+  visibility: hidden;
+}
+
+.list-view details[open] > summary .chev {
+  transform: rotate(90deg);
+}
+
+.list-view .list-photo {
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--muted);
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.list-view .list-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.list-view .list-info {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.list-view .list-name {
+  font-family: "Noto Sans Tamil", "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-view .list-name-en {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  color: rgba(31, 42, 68, 0.72);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-view .list-partners {
+  font-family: "Noto Sans Tamil", "Inter", sans-serif;
+  font-size: 11px;
+  color: rgba(31, 42, 68, 0.65);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-view .list-meta {
+  font-size: 11px;
+  color: rgba(31, 42, 68, 0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-view .list-open {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-view .list-open:hover {
+  background: white;
+}
+
+.list-view details > summary.matched {
+  outline: 2px solid #ff8a3d;
+  outline-offset: 2px;
+}
+
+.list-view details > summary.dimmed {
+  opacity: 0.4;
+}
+
+.list-view .list-empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 20px;
+  font-size: 13px;
+}
+
+/* ---------- Tablets / small laptops ---------- */
+
+@media (max-width: 900px) {
   .search input {
-    width: 130px;
+    width: 160px;
   }
   .detail {
-    width: 100%;
+    width: 320px;
   }
   .brand .subtitle {
     display: none;
   }
+}
+
+/* ---------- Phones ---------- */
+
+@media (max-width: 700px) {
+  :root {
+    --header-h: 104px;
+  }
+
+  /* Header reflows into two rows: title on top, controls below. */
+  .app-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 10px 12px;
+    height: auto;
+    min-height: var(--header-h);
+  }
+
+  .brand {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .brand h1 {
+    font-size: 16px;
+  }
+
+  .controls {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "search toggle"
+      "zoom   zoom";
+    gap: 8px;
+    align-items: center;
+  }
+
+  .controls .search {
+    grid-area: search;
+    width: 100%;
+    padding: 6px 12px;
+  }
+
+  .controls .search input {
+    width: 100%;
+    font-size: 13px;
+  }
+
+  .view-toggle {
+    grid-area: toggle;
+    height: 34px;
+  }
+
+  .zoom-controls {
+    grid-area: zoom;
+    justify-self: stretch;
+    justify-content: space-between;
+    padding: 3px;
+  }
+
+  .zoom-controls button {
+    height: 26px;
+    font-size: 13px;
+    padding: 0 8px;
+  }
+
+  /* Compact card visuals — JS uses 140x64 too. */
+  .card {
+    width: 140px;
+    height: 64px;
+    padding: 8px 10px;
+    gap: 8px;
+    border-radius: 12px;
+  }
+
+  .card .photo {
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    font-size: 12px;
+  }
+
+  .card .name {
+    font-size: 12px;
+  }
+
+  .card .name-en {
+    font-size: 10px;
+    margin-top: 0;
+  }
+
+  .card .meta {
+    font-size: 10px;
+    margin-top: 1px;
+  }
+
+  .card.deceased::after {
+    top: 4px;
+    right: 6px;
+    font-size: 10px;
+  }
+
+  /* Gen jumper occupies a strip just under the header. */
+  .gen-jumper {
+    display: flex;
+  }
+
+  .viewport {
+    top: calc(var(--header-h) + 38px);
+    background-size: 22px 22px;
+  }
+
+  .hint {
+    display: none;
+  }
+
   .legend {
     display: none;
+  }
+
+  /* Detail panel slides over full width. */
+  .detail {
+    width: 100%;
+    top: 0;
+    padding-top: 56px; /* leave room for the close button + status bar */
+  }
+
+  .detail .close {
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+  }
+
+  /* Tighten the list view's padding on phones where the content column
+     already stretches edge-to-edge. */
+  .list-view {
+    padding: 14px 12px 40px;
+  }
+}
+
+/* ---------- Very narrow phones ---------- */
+
+@media (max-width: 380px) {
+  .brand h1 {
+    font-size: 15px;
+  }
+
+  .zoom-controls button {
+    padding: 0 6px;
   }
 }
