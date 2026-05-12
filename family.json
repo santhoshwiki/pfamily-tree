@@ -574,6 +574,275 @@
       "father": "muthusamy"
     },
 
+    {
+      "id": "sadaiyagoundar-b1",
+      "name": "ஆண் 1",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "sadaiyagoundar"
+    },
+    {
+      "id": "raakiyakgoundar",
+      "name": "ராக்கியாக்கவுண்டர் (Raakiyakgoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "sadaiyagoundar"
+    },
+    {
+      "id": "ganapathygoundar",
+      "name": "கணபதிகவுண்டர் (Ganapathygoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "sadaiyagoundar"
+    },
+
+    {
+      "id": "sadaiyagoundar-b1-b1",
+      "name": "ஆண் 1",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "sadaiyagoundar-b1"
+    },
+    {
+      "id": "sadaiyagoundar-b1-g1",
+      "name": "பெண் 1",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "sadaiyagoundar-b1"
+    },
+    {
+      "id": "sadaiyagoundar-b1-g2",
+      "name": "பெண் 2",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "sadaiyagoundar-b1"
+    },
+    {
+      "id": "boopathi",
+      "name": "பூபதி (Boopathi)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "sadaiyagoundar-b1-b1"
+    },
+
+    {
+      "id": "duraisamy",
+      "name": "துரைசாமி (Duraisamy)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "raakiyakgoundar"
+    },
+    {
+      "id": "raakiyakgoundar-g1",
+      "name": "பெண் 1",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "raakiyakgoundar"
+    },
+    {
+      "id": "gopal",
+      "name": "கோபால் (Gopal)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "duraisamy"
+    },
+
+    {
+      "id": "thirumoorthy",
+      "name": "திருமூர்த்தி (Thirumoorthy)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "ganapathygoundar"
+    },
+    {
+      "id": "mayilsamy",
+      "name": "மயில்சாமி (Mayilsamy)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "ganapathygoundar"
+    },
+    {
+      "id": "ganapathygoundar-g1",
+      "name": "பெண் 1",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "ganapathygoundar"
+    },
+    {
+      "id": "prakash",
+      "name": "பிரகாஷ் (Prakash)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "thirumoorthy"
+    },
+    {
+      "id": "makesh",
+      "name": "மயில்சாமி (Makesh)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "mayilsamy"
+    },
+    {
+      "id": "mayilsamy-g1",
+      "name": "பெண் 1",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "mayilsamy"
+    },
+
+
+    {
+      "id": "nanjappagoundar-4",
+      "name": "நஞ்சப்ப கவுண்டர் (Nanjappa Goundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "kitnagoundar"
+    },
+    {
+      "id": "kitnagoundar-g1",
+      "name": "பெண் 1",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "kitnagoundar"
+    },
+    {
+      "id": "kitnagoundar-g2",
+      "name": "பெண் 2",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "kitnagoundar"
+    },
+    {
+      "id": "kitnagoundar-g3",
+      "name": "பெண் 3",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "kitnagoundar"
+    },
+    {
+      "id": "kitnagoundar-g4",
+      "name": "பெண் 4",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "kitnagoundar"
+    },
+    {
+      "id": "dhanapal",
+      "name": "தனபால் (Dhanapal)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "nanjappagoundar-4"
+    },
+
+    {
+      "id": "komarakgoundar",
+      "name": "கொமராக்கவுண்டர் (Komarakgoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "nanjappagoundar-3"
+    },
+    {
+      "id": "mariyappagoundar",
+      "name": "மாரியப்பக்கவுண்டர் (Mariyappagoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "nanjappagoundar-3"
+    },
+    {
+      "id": "rangasamygoundar",
+      "name": "ரங்கசாமிக்கவுண்டர் (Rangasamygoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "nanjappagoundar-3"
+    },
+    {
+      "id": "nanjappagoundar-3-g1",
+      "name": "பெண் 1",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "nanjappagoundar-3"
+    },
+    {
+      "id": "nanjappagoundar-3-g2",
+      "name": "பெண் 2",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "nanjappagoundar-3"
+    },
+    {
+      "id": "nanjappagoundar-3-g3",
+      "name": "பெண் 3",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "nanjappagoundar-3"
+    },
+    {
+      "id": "nanjappagoundar-3-g4",
+      "name": "பெண் 4",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "nanjappagoundar-3"
+    },
+
+
 
     {
       "id": "karupana-goundar",
