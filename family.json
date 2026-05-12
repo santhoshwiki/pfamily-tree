@@ -842,6 +842,277 @@
       "father": "nanjappagoundar-3"
     },
 
+    {
+      "id": "durai",
+      "name": "துரை (Durai)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "komarakgoundar"
+    },
+    {
+      "id": "selvan",
+      "name": "செல்வன் (Selvan)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "komarakgoundar"
+    },
+    {
+      "id": "komarakgoundar-g1",
+      "name": "பெண் 1",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "komarakgoundar"
+    },
+    {
+      "id": "komarakgoundar-g2",
+      "name": "பெண் 2",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "komarakgoundar"
+    },
+
+    {
+      "id": "autopalanisamy",
+      "name": "பழனிசாமி (Palanisamy)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "mariyappagoundar"
+    },
+    {
+      "id": "mariyappagoundar-g1",
+      "name": "பெண் 1",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "mariyappagoundar"
+    },
+
+
+    {
+      "id": "mani",
+      "name": "மணி (Mani)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "rangasamygoundar"
+    },
+    {
+      "id": "venkadachalam",
+      "name": "வெங்கடாசலம் (Venkadachalam)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "rangasamygoundar"
+    },
+
+    {
+      "id": "subaiyagoundar",
+      "name": "சுப்பையகவுண்டர் (Subaiyagoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "palanikgoundar"
+    },
+    {
+      "id": "ponmalaigoundar",
+      "name": "பொன்மலைக்கவுண்டர் (Ponmalaigoundar)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "palanikgoundar"
+    },
+    {
+      "id": "palanikgoundar-g1",
+      "name": "பெண் 1",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "palanikgoundar"
+    },
+    {
+      "id": "subaiyagoundar-b1",
+      "name": "ஆண் 1",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "subaiyagoundar"
+    },
+    {
+      "id": "subaiyagoundar-g1",
+      "name": "பெண் 1",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "subaiyagoundar"
+    },
+    {
+      "id": "subaiyagoundar-g2",
+      "name": "பெண் 2",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "subaiyagoundar"
+    },
+    {
+      "id": "shanmugam",
+      "name": "சண்முகம் (Shanmugam)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "ponmalaigoundar"
+    },
+    {
+      "id": "prabhu",
+      "name": "பிரபு (Prabhu)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "ponmalaigoundar"
+    },
+
+    {
+      "id": "gopalan",
+      "name": "கோபாலன் (Gopalan)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "ramasamy-goundar"
+    },
+    {
+      "id": "ramasamy-goundar-g1",
+      "name": "பெண் 1",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "ramasamy-goundar"
+    },
+    {
+      "id": "gowsi",
+      "name": "கௌசி (Gowsi)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "gopalan"
+    },
+
+
+    {
+      "id": "anbumani",
+      "name": "அன்புமணி (Anbumani)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "aaraakgoundar"
+    },
+    {
+      "id": "aaraakgoundar-g1",
+      "name": "பெண் 1",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "aaraakgoundar"
+    },
+    {
+      "id": "aaraakgoundar-g2",
+      "name": "பெண் 2",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "aaraakgoundar"
+    },
+    {
+      "id": "kamalesh",
+      "name": "கமலேஷ் (Kamalesh)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "anbumani"
+    },
+    {
+      "id": "malini",
+      "name": "மாலினி (Malini)",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "anbumani"
+    },
+
+
+    {
+      "id": "murugasamy-1",
+      "name": "முருகசாமி (Murugasamy)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "pattegoundar-2"
+    },
+    {
+      "id": "pattegoundar-2-g1",
+      "name": "பெண் 1",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "pattegoundar-2"
+    },
+    {
+      "id": "shanthi",
+      "name": "சாந்தி (Shanthi)",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": ""
+    },
+    {
+      "id": "murugasamy-1-b1",
+      "name": "ஆண் 1",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "murugasamy-1",
+      "mother": "shanthi"
+    },
+    {
+      "id": "murugasamy-1-b2",
+      "name": "ஆண் 2",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "murugasamy-1",
+      "mother": "shanthi"
+    },
 
 
     {
@@ -1105,6 +1376,8 @@
 
     { "type": "partner", "person1": "kitakgoundar", "person2": "kitakgoundar-wife1" },
     { "type": "partner", "person1": "kitakgoundar", "person2": "kitakgoundar-wife2" },
+
+    { "type": "partner", "person1": "murugasamy-1", "person2": "shanthi" },
 
     { "type": "partner", "person1": "karupana-goundar", "person2": "ramathal" },
     { "type": "partner", "person1": "palanisamy", "person2": "kokilamani" },
