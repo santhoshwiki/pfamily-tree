@@ -1,0 +1,35 @@
+index.html
+  s_e02a9992d61cbf::t_84a395d17e5c58 51-60,64-65,83
+  s_e02a9992d61cbf::t_ad9eedfb376f2d 93
+  s_e02a9992d61cbf::t_c4012ff5735e2d 24
+styles.css
+  s_e02a9992d61cbf::t_c615a764dd6fbe 141-142,144
+  s_e02a9992d61cbf::t_dee5b514bb772a 143,145-247
+  s_e02a9992d61cbf::t_f651cae1a15279 637-638,640-648,650-653,664-667,670-839,841,844,849-967,971-986,991-1002
+  s_e02a9992d61cbf::t_2f4e66e7ee8035 633-636,639,649,654-663,668-669
+  s_e02a9992d61cbf::t_bb18b8b09717a5 987-990
+app.js
+  s_e02a9992d61cbf::t_f0d9de800dc6c7 17-50,64-71,79-82
+  s_e02a9992d61cbf::t_5e1ec141076faa 1008-1027
+  s_e02a9992d61cbf::t_ab0888d639c236 112,118-125,144-165
+  s_e02a9992d61cbf::t_eb20b1361a31f0 903-924,927-928,931-939,941-950,952-963,965-976
+  s_e02a9992d61cbf::t_8e6b159b38825f 1153
+  s_e02a9992d61cbf::t_f4c48fe88183fa 1217-1472
+  s_e02a9992d61cbf::t_a60604655cc54b 1051
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "be7c418e230567dfd1891440d4eb1adbb141d5d0",
+  "prompts": {},
+  "sessions": {
+    "s_e02a9992d61cbf": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "140a35f4-b886-4642-8f3a-17de1ca22720",
+        "model": "claude-opus-4-7-thinking-xhigh"
+      },
+      "human_author": "Santhoshkumar. P <mail2palanisamyk@gmail.com>"
+    }
+  }
+}
