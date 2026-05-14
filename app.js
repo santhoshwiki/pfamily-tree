@@ -1438,7 +1438,9 @@
         return null;
       }
     })();
-    const initial = stored === "list" ? "list" : "tree";
+    // List view is the default for first-time visitors. A user who has
+    // previously toggled to tree view still gets tree view on refresh.
+    const initial = stored === "tree" ? "tree" : "list";
     applyView(initial);
 
     viewToggleEl.addEventListener("click", () => {
