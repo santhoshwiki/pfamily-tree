@@ -1,0 +1,19 @@
+app.js
+  s_e02a9992d61cbf::t_aea61414eb53e6 1441-1443
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "47a5657f9294131d3ac750a1627aacf1f9717bc3",
+  "prompts": {},
+  "sessions": {
+    "s_e02a9992d61cbf": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "140a35f4-b886-4642-8f3a-17de1ca22720",
+        "model": "claude-opus-4-7-thinking-xhigh"
+      },
+      "human_author": "Santhoshkumar. P <mail2palanisamyk@gmail.com>"
+    }
+  }
+}
