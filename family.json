@@ -28,7 +28,7 @@
     },
     {
       "id": "pattegoundar",
-      "name": "பட்டேகவுண்டர் (Pattegoundar)",
+      "name": "பாட்டேகவுண்டர் (Pattegoundar)",
       "gender": "male",
       "place": "",
       "photo": "",
@@ -487,6 +487,33 @@
       "photo": "",
       "bio": "",
       "father": "sanmugan"
+    },
+    {
+      "id": "mythili-1",
+      "name": "மைதிலி (Mythili)",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "sanmugan"
+    },
+    {
+      "id": "sowmiya",
+      "name": "சௌமியா (Sowmiya)",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": ""
+    },
+    {
+      "id": "parivendhan",
+      "name": "பாரிவேந்தன் (Parivendhan)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "yuvaraj",
+      "mother": "sowmiya"
     },
 
     {
