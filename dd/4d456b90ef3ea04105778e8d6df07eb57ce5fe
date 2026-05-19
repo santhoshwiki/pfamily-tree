@@ -1,0 +1,14 @@
+family.json
+  h_7d4db1bfbefa1c 1408
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "dd4d456b90ef3ea04105778e8d6df07eb57ce5fe",
+  "prompts": {},
+  "humans": {
+    "h_7d4db1bfbefa1c": {
+      "author": "Santhoshkumar. P <mail2palanisamyk@gmail.com>"
+    }
+  }
+}
