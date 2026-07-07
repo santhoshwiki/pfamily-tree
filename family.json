@@ -338,7 +338,24 @@
       "bio": "",
       "father": "kumaragoundar"
     },
-
+    {
+      "id": "nanjamal-3",
+      "name": "நஞ்சம்மாள் (Nanjamal)",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "kumaragoundar"
+    },
+    {
+      "id": "sadaiyammal",
+      "name": "சடையம்மாள் (Sadaiyammal)",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "kumaragoundar"
+    },
 
 
     {
@@ -602,13 +619,22 @@
     },
 
     {
+      "id": "kupathaal",
+      "name": "குப்பாத்தாள் (Kupathaal)",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": ""
+    },
+    {
       "id": "sadaiyagoundar-b1",
-      "name": "ஆண் 1",
+      "name": "மாறப்பகவுண்டர் (Marappagoundar)",
       "gender": "male",
       "place": "",
       "photo": "",
       "bio": "",
-      "father": "sadaiyagoundar"
+      "father": "sadaiyagoundar",
+      "mother": "kupathaal"
     },
     {
       "id": "raakiyakgoundar",
@@ -617,7 +643,8 @@
       "place": "",
       "photo": "",
       "bio": "",
-      "father": "sadaiyagoundar"
+      "father": "sadaiyagoundar",
+      "mother": "kupathaal"
     },
     {
       "id": "ganapathygoundar",
@@ -626,39 +653,80 @@
       "place": "",
       "photo": "",
       "bio": "",
-      "father": "sadaiyagoundar"
+      "father": "sadaiyagoundar",
+      "mother": "kupathaal"
+    },
+    {
+      "id": "najamal-4",
+      "name": "நஞ்சம்மாள் (Najamal)",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "sadaiyagoundar",
+      "mother": "kupathaal"
+    },
+    {
+      "id": "masiriyamal",
+      "name": "மசிரியம்மாள் (Masiriyamal)",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "sadaiyagoundar",
+      "mother": "kupathaal"
     },
 
     {
+      "id": "ponammal",
+      "name": "பொன்னம்மாள் (Ponammal)",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": ""
+    },
+    {
       "id": "sadaiyagoundar-b1-b1",
-      "name": "ஆண் 1",
+      "name": "பழனிசாமி (Palanisamy)",
       "gender": "male",
       "place": "",
       "photo": "",
       "bio": "",
-      "father": "sadaiyagoundar-b1"
+      "father": "sadaiyagoundar-b1",
+      "mother": "ponammal"
     },
     {
       "id": "sadaiyagoundar-b1-g1",
-      "name": "பெண் 1",
+      "name": "சரசாத்தாள் (Sarasathal)",
       "gender": "female",
       "place": "",
       "photo": "",
       "bio": "",
-      "father": "sadaiyagoundar-b1"
+      "father": "sadaiyagoundar-b1",
+      "mother": "ponammal"
     },
     {
       "id": "sadaiyagoundar-b1-g2",
-      "name": "பெண் 2",
+      "name": "கமலத்தாள் (Kamalathal)",
       "gender": "female",
       "place": "",
       "photo": "",
       "bio": "",
-      "father": "sadaiyagoundar-b1"
+      "father": "sadaiyagoundar-b1",
+      "mother": "ponammal"
     },
     {
       "id": "boopathi",
       "name": "பூபதி (Boopathi)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "sadaiyagoundar-b1-b1"
+    },
+    {
+      "id": "mathi",
+      "name": "மதி (Mathi)",
       "gender": "male",
       "place": "",
       "photo": "",
@@ -695,13 +763,22 @@
     },
 
     {
+      "id": "angammal",
+      "name": "அங்கம்மாள் (Angammal)",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": ""
+    },
+    {
       "id": "thirumoorthy",
       "name": "திருமூர்த்தி (Thirumoorthy)",
       "gender": "male",
       "place": "",
       "photo": "",
       "bio": "",
-      "father": "ganapathygoundar"
+      "father": "ganapathygoundar",
+      "mother": "angammal"
     },
     {
       "id": "mayilsamy",
@@ -710,16 +787,18 @@
       "place": "",
       "photo": "",
       "bio": "",
-      "father": "ganapathygoundar"
+      "father": "ganapathygoundar",
+      "mother": "angammal"
     },
     {
       "id": "ganapathygoundar-g1",
-      "name": "பெண் 1",
+      "name": "பொன்னம்மாள் (Ponammal)",
       "gender": "female",
       "place": "",
       "photo": "",
       "bio": "",
-      "father": "ganapathygoundar"
+      "father": "ganapathygoundar",
+      "mother": "angammal"
     },
     {
       "id": "prakash",
@@ -732,7 +811,7 @@
     },
     {
       "id": "makesh",
-      "name": "மயில்சாமி (Makesh)",
+      "name": " (Makesh kumar)",
       "gender": "male",
       "place": "",
       "photo": "",
@@ -741,12 +820,41 @@
     },
     {
       "id": "mayilsamy-g1",
-      "name": "பெண் 1",
+      "name": "தவப்பிரியா (Thavapriya)",
       "gender": "female",
       "place": "",
       "photo": "",
       "bio": "",
       "father": "mayilsamy"
+    },
+
+    {
+      "id": "thenmozhi",
+      "name": "தேன்மொழி (Thenmozhi)",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": ""
+    },
+    {
+      "id": "vikunth",
+      "name": "விகுந்த் (Vikunth)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "makesh",
+      "mother": "thenmozhi"
+    },
+    {
+      "id": "navanith",
+      "name": "நவநீத் (Navanith)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "makesh",
+      "mother": "thenmozhi"
     },
 
 
@@ -946,13 +1054,22 @@
     },
 
     {
+      "id": "poovathal",
+      "name": "பூவாத்தாள் (Poovathal)",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": ""
+    },
+    {
       "id": "subaiyagoundar",
       "name": "சுப்பையகவுண்டர் (Subaiyagoundar)",
       "gender": "male",
       "place": "",
       "photo": "",
       "bio": "",
-      "father": "palanikgoundar"
+      "father": "palanikgoundar",
+      "mother": "poovathal"
     },
     {
       "id": "ponmalaigoundar",
@@ -961,7 +1078,8 @@
       "place": "",
       "photo": "",
       "bio": "",
-      "father": "palanikgoundar"
+      "father": "palanikgoundar",
+      "mother": "poovathal"
     },
     {
       "id": "palanikgoundar-g1",
@@ -970,7 +1088,8 @@
       "place": "",
       "photo": "",
       "bio": "",
-      "father": "palanikgoundar"
+      "father": "palanikgoundar",
+      "mother": "poovathal"
     },
     {
       "id": "subaiyagoundar-b1",
@@ -1392,14 +1511,16 @@
   ],
   "relationships": [
     { "type": "partner", "person1": "nanjappa-goundar-1", "person2": "poochiyammal" },
-
+    { "type": "partner", "person1": "sadaiyagoundar", "person2": "kupathaal" },
+    { "type": "partner", "person1": "palanikgoundar", "person2": "poovathal" },
     { "type": "partner", "person1": "karuppagoundar", "person2": "karuppagoundar-wife1" },
     { "type": "partner", "person1": "karuppagoundar", "person2": "karuppagoundar-wife2" },
-
+    { "type": "partner", "person1": "sadaiyagoundar-b1", "person2": "ponammal" },
     { "type": "partner", "person1": "marappa-goundar", "person2": "kuttiyamal" },
-
+    { "type": "partner", "person1": "ganapathygoundar", "person2": "angammal" },
     { "type": "partner", "person1": "subramani", "person2": "subramani-wife1" },
     { "type": "partner", "person1": "subramani", "person2": "subramani-wife2" },
+    { "type": "partner", "person1": "makesh", "person2": "thenmozhi" },
 
     { "type": "partner", "person1": "kitakgoundar", "person2": "kitakgoundar-wife1" },
     { "type": "partner", "person1": "kitakgoundar", "person2": "kitakgoundar-wife2" },
