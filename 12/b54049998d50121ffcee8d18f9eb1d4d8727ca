@@ -1,0 +1,14 @@
+family.json
+  h_7d4db1bfbefa1c 341-358,621-627,631,636-637,646-647,656-657,659-677,681-687,690,695-696,700,705-706,710,715-716,727-735,766-772,780-781,790-791,795,800-801,814,823,831-859,1057-1063,1071-1072,1081-1082,1091-1092,1514-1515,1518,1520,1523
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "12b54049998d50121ffcee8d18f9eb1d4d8727ca",
+  "prompts": {},
+  "humans": {
+    "h_7d4db1bfbefa1c": {
+      "author": "Santhoshkumar. P <mail2palanisamyk@gmail.com>"
+    }
+  }
+}
