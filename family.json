@@ -715,6 +715,15 @@
       "father": "sadaiyagoundar-b1",
       "mother": "ponammal"
     },
+
+    {
+      "id": "poovathal1",
+      "name": "பூவாத்தாள் (Poovathal)",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": ""
+    },
     {
       "id": "boopathi",
       "name": "பூபதி (Boopathi)",
@@ -722,7 +731,8 @@
       "place": "",
       "photo": "",
       "bio": "",
-      "father": "sadaiyagoundar-b1-b1"
+      "father": "sadaiyagoundar-b1-b1",
+      "mother": "poovathal1"
     },
     {
       "id": "mathi",
@@ -731,7 +741,8 @@
       "place": "",
       "photo": "",
       "bio": "",
-      "father": "sadaiyagoundar-b1-b1"
+      "father": "sadaiyagoundar-b1-b1",
+      "mother": "poovathal1"
     },
 
     {
@@ -744,7 +755,7 @@
     },
     {
       "id": "mahilan",
-      "name": "மகிழன் (Mahilan)",
+      "name": "மகிழன் (Mahillan)",
       "gender": "male",
       "place": "",
       "photo": "",
@@ -753,8 +764,8 @@
       "mother": "malathi"
     },
     {
-      "id": "boopathi-g1",
-      "name": "Pen (Pen)",
+      "id": "navamagillini",
+      "name": "நவ மகிழினி(Nava Magillini)",
       "gender": "female",
       "place": "",
       "photo": "",
@@ -1570,6 +1581,7 @@
     { "type": "partner", "person1": "subramani", "person2": "subramani-wife1" },
     { "type": "partner", "person1": "subramani", "person2": "subramani-wife2" },
     { "type": "partner", "person1": "makesh", "person2": "thenmozhi" },
+    { "type": "partner", "person1": "sadaiyagoundar-b1-b1", "person2": "poovathal1" },
     { "type": "partner", "person1": "boopathi", "person2": "malathi" },
 
     { "type": "partner", "person1": "kitakgoundar", "person2": "kitakgoundar-wife1" },
