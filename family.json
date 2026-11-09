@@ -1001,7 +1001,7 @@
     },
     {
       "id": "nanjappagoundar-3-g1",
-      "name": "பெண் 1",
+      "name": "மாராத்தாள் (Marathal)",
       "gender": "female",
       "place": "",
       "photo": "",
@@ -1010,7 +1010,7 @@
     },
     {
       "id": "nanjappagoundar-3-g2",
-      "name": "பெண் 2",
+      "name": "சின்னம்மாள் (Chinnamal)",
       "gender": "female",
       "place": "",
       "photo": "",
@@ -1019,16 +1019,7 @@
     },
     {
       "id": "nanjappagoundar-3-g3",
-      "name": "பெண் 3",
-      "gender": "female",
-      "place": "",
-      "photo": "",
-      "bio": "",
-      "father": "nanjappagoundar-3"
-    },
-    {
-      "id": "nanjappagoundar-3-g4",
-      "name": "பெண் 4",
+      "name": "ராமத்தாள் (Ramathal)",
       "gender": "female",
       "place": "",
       "photo": "",
@@ -1113,6 +1104,25 @@
     },
 
     {
+      "id": "vijiyalakshmi",
+      "name": "விஜயலட்சுமி (Vijiyalakshmi)",
+      "gender": "female",
+      "place": "",
+      "photo": "",
+      "bio": ""
+    },
+    {
+      "id": "vigneshprabhu",
+      "name": "விக்னேஷ் பிரபு (Vignesh Prabhu)",
+      "gender": "male",
+      "place": "",
+      "photo": "",
+      "bio": "",
+      "father": "venkadachalam",
+      "mother": "vijiyalakshmi"
+    },
+
+    {
       "id": "poovathal",
       "name": "பூவாத்தாள் (Poovathal)",
       "gender": "female",
@@ -1188,7 +1198,7 @@
     },
     {
       "id": "prabhu",
-      "name": "பிரபு (Prabhu)",
+      "name": "கணேஷ் (எ) பிரபு (Ganesh (or) Prabhu)",
       "gender": "male",
       "place": "",
       "photo": "",
@@ -1583,6 +1593,8 @@
     { "type": "partner", "person1": "makesh", "person2": "thenmozhi" },
     { "type": "partner", "person1": "sadaiyagoundar-b1-b1", "person2": "poovathal1" },
     { "type": "partner", "person1": "boopathi", "person2": "malathi" },
+
+    { "type": "partner", "person1": "venkadachalam", "person2": "vijiyalakshmi" },
 
     { "type": "partner", "person1": "kitakgoundar", "person2": "kitakgoundar-wife1" },
     { "type": "partner", "person1": "kitakgoundar", "person2": "kitakgoundar-wife2" },
